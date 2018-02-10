@@ -1,7 +1,10 @@
 // @flow
 
 import 'babel-polyfill';
+// import 'raf/polyfill';
+
 // import _ from 'lodash';
+
 import invariant from 'invariant';
 
 import * as React from 'react';

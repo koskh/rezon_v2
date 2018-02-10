@@ -17,7 +17,7 @@ module.exports = {
             'redux', 'react-redux', 'react-router-redux', 'history'
         ],
 
-        // polyfill: 'babel-polyfill',
+        polyfill: 'babel-polyfill',
         moment: 'moment',
         lodash: 'lodash',
         // json: path.join(__dirname, '../client/scripts/test.json')
