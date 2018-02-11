@@ -3,7 +3,7 @@
 import * as React from 'react';
 // import Header from '../../components/page-header';
 
-export default class NotFound extends React.Component<*> {
+export default class extends React.Component<*> {
     componentWillMount() {
         document.title = 'Login page';
     }

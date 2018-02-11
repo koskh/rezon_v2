@@ -1,31 +1,29 @@
 // @flow
 
 import * as React from 'react';
-// import Header from '../../components/page-header';
+import {NavLink} from "react-router-dom";
 
 export default class extends React.Component<*> {
-    componentWillMount() {
-        document.title = 'Main page';
-    }
+    // componentWillMount() {
+    //
+    // }
 
     render() {
         return (
             <ul>
                 <li>
-                    <Link to="/">Main</Link>
+                    <NavLink to="/">Main</NavLink>
                 </li>
                 <li>
-                    <Link to="/tools">Tools</Link>
+                    <NavLink to="/tools">Tools</NavLink>
                 </li>
                 <li>
-                    <Link to="/login">Login</Link>
+                    <NavLink to="/login">Login</NavLink>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <NavLink to="/about">About</NavLink>
                 </li>
             </ul>
-
-
         );
     }
 }

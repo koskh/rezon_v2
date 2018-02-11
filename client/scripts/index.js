@@ -9,19 +9,41 @@ import invariant from 'invariant';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect,  withRouter } from "react-router-dom";
 
+import {OpenRoute, PrivateRoute} from './services/route'
 
+import Navigate from './components/Navigate';
+
+// open pages
 import NotFound from './features/NotFound';
-import Login from './features/';
+import Login from './features/Login';
+import About from './features/About';
+// private pages
+import Main from './features/Main';
+import Tools from './features/Tools';
+
 
 const rootEl = document && document.getElementById('root');
 invariant(rootEl, 'Cant find root element');
 
 ReactDOM.render(
-    <div>
-        <h1>Hello react</h1>
-        <DumbBtn title='Test title'/>
-    </div>,
+   <Router>
+       <div>
+
+           <Navigate />
+
+           <hr />
+
+           <PrivateRoute exact path="/" component={Main} />
+           <PrivateRoute path="/tools" component={Tools} />
+           <OpenRoute  path="/login" component={Login} />
+           <OpenRoute path="/about" component={About} />
+
+       </div>
+   </Router>,
     rootEl
 );
+
+
+

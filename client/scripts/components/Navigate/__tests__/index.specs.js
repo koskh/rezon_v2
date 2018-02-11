@@ -3,12 +3,12 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Open from '../';
+import Navigate from '../index';
 
-describe('features/OpenPage', () => {
+describe('Component/Navigate', () => {
 
-    test('feature can render', () => {
-        const component = renderer.create(<Open />);
+    test('can render', () => {
+        const component = renderer.create(<Navigate />);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
