@@ -3,9 +3,9 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Main from '../';
+import Main from '../index';
 
-describe('features/Main', () => {
+describe('features/Home', () => {
 
     test('feature can render', () => {
         const component = renderer.create(<Main />);

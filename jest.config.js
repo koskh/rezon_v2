@@ -9,4 +9,5 @@ module.exports = {
         "raf/polyfill",
         "<rootDir>/jest/setupTests.js"
     ],
+    "coverageDirectory": "<rootDir>/jest/coverage"
 };

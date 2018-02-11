@@ -29,6 +29,12 @@ module.exports = {
         filename: '[name].js'
     },
 
+    devtool: 'source-map',
+
+    watchOptions: {
+        aggregateTimeout: 300
+    },
+
     module: {
         rules: [
             {
