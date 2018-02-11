@@ -93,7 +93,7 @@
     "express": "^4.16.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "regression": "jest /jest/regression",
     "webpack-watch": "mkdirp dist/static && webpack --watch  --config webpack/webpack.config.js",
     "build:client": "npm run _setup-output-folder && webpack --config webpack/webpack.config.js",
