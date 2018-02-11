@@ -9,7 +9,11 @@ import invariant from 'invariant';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import DumbBtn from './components/DumbBtn';
+import { BrowserRouter } from 'react-router-dom'
+
+
+import NotFound from './features/NotFound';
+import Login from './features/';
 
 const rootEl = document && document.getElementById('root');
 invariant(rootEl, 'Cant find root element');

@@ -5,13 +5,13 @@ import * as React from 'react';
 
 export default class NotFound extends React.Component<*> {
     componentWillMount() {
-        document.title = 'Open page';
+        document.title = 'OpenPage page';
     }
 
     render() {
         return (
             <article>
-                <h1>Отурытая страница</h1>
+                <h1>Открытая страница</h1>
                 <p>НЕ требует аутентификации</p>
             </article>
         );

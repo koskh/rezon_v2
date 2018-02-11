@@ -3,12 +3,12 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Tools from '../';
+import Open from '../';
 
-describe('features/main', () => {
+describe('features/OpenPage', () => {
 
     test('feature can render', () => {
-        const component = renderer.create(<Tools />);
+        const component = renderer.create(<Open />);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });

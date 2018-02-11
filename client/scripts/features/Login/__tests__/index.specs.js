@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import Login from '../';
 
-describe('features/login', () => {
+describe('features/Login', () => {
 
     test('feature can render', () => {
         const component = renderer.create(<Login />);

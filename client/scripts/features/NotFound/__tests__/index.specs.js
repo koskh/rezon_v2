@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import NotFound from '../';
 
-describe('features/main', () => {
+describe('features/NotFound', () => {
 
     test('feature can render', () => {
         const component = renderer.create(<NotFound />);

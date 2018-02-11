@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import Main from '../';
 
-describe('features/main', () => {
+describe('features/Main', () => {
 
     test('feature can render', () => {
         const component = renderer.create(<Main />);
