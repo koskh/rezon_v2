@@ -9,7 +9,7 @@ import invariant from 'invariant';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter as Router, Route, Link, Redirect,  withRouter } from "react-router-dom";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
 
 import {OpenRoute, PrivateRoute} from './services/route'
 
@@ -28,20 +28,23 @@ const rootEl = document && document.getElementById('root');
 invariant(rootEl, 'Cant find root element');
 
 ReactDOM.render(
-   <Router>
-       <div>
+    <Router>
+        <div>
 
-           <Navigate />
+            <Navigate/>
 
-           <hr />
+            <hr/>
 
-           <PrivateRoute exact path="/" component={Main} />
-           <PrivateRoute path="/tools" component={Tools} />
-           <OpenRoute  path="/login" component={Login} />
-           <OpenRoute path="/about" component={About} />
+            <Switch>
+                <PrivateRoute exact path="/" component={Main}/>
+                <PrivateRoute path="/tools" component={Tools}/>
+                <OpenRoute path="/login" component={Login}/>
+                <OpenRoute path="/about" component={About}/>
+                <OpenRoute component={NotFound}/>
+            </Switch>
 
-       </div>
-   </Router>,
+        </div>
+    </Router>,
     rootEl
 );
 

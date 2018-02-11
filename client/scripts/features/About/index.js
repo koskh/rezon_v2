@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-// import Header from '../../components/page-header';
 
 export default class extends React.Component<*> {
     componentWillMount() {
