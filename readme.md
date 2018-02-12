@@ -1,6 +1,6 @@
-###Наброски базовой архитектуры spa приложения  
+### Наброски базовой архитектуры spa приложения  
 
-####Для сборки Bootstrap4 на 24 колонки:
+#### Для сборки Bootstrap4 на 24 колонки:
 npm install --global --production windows-build-tools  
 npm install node-sass rebuild  
 
