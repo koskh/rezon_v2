@@ -6,9 +6,6 @@ import {NavLink} from "react-router-dom";
 import style from './index.pcss';
 
 export default class extends React.Component<*> {
-    // componentWillMount() {
-    //
-    // }
 
     render() {
         const { match } = this.props;

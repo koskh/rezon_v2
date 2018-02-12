@@ -1,12 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`features/NotFound feature can render 1`] = `
-<article>
-  <h1>
-    404 Страница не найдена
-  </h1>
-  <p>
-    Вернитесь назад и попробуйте еще раз.
-  </p>
-</article>
+exports[`Component/Navigate can render 1`] = `
+<nav
+  className="nav bg-light mb-4"
+>
+  <a
+    aria-current={false}
+    className="nav-link"
+    href="/"
+    onClick={[Function]}
+    style={undefined}
+  >
+    Main
+  </a>
+  <a
+    aria-current={false}
+    className="nav-link"
+    href="/tools"
+    onClick={[Function]}
+    style={undefined}
+  >
+    Tools
+  </a>
+  <a
+    aria-current={false}
+    className="nav-link"
+    href="/login"
+    onClick={[Function]}
+    style={undefined}
+  >
+    Login
+  </a>
+  <a
+    aria-current={false}
+    className="nav-link"
+    href="/about"
+    onClick={[Function]}
+    style={undefined}
+  >
+    About
+  </a>
+</nav>
 `;
