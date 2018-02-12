@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractApplicationCss = new ExtractTextPlugin({ filename: 'index.css', allChunks: true });
-const extractBootstrapCss = new ExtractTextPlugin({ filename: 'bootstrap.css', allChunks: true });
+const extractGlobalCss = new ExtractTextPlugin({ filename: 'global.css', allChunks: true });
 
 
 module.exports = {
@@ -59,8 +59,27 @@ module.exports = {
             },
 
             {
-                test: /\.(css|pcss)$/,
+                test: /index\.(css|pcss)$/,
                 use: extractApplicationCss.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[folder]_[name]__[local]--[hash:base64:5]',
+                            sourceMap: true,
+                            importLoaders: 1,
+                            // minimize: true
+                        }
+                    },
+                        'postcss-loader'
+                    ]
+                })
+            },
+
+            {
+                test: /global\.(css|pcss)$/,
+                use: extractGlobalCss.extract({
                     fallback: 'style-loader',
                     use: [{
                         loader: 'css-loader',
@@ -73,18 +92,6 @@ module.exports = {
                     ]
                 })
             },
-            {
-                test: /bootstrap\.css$/,
-                use: extractBootstrapCss.extract({
-                    fallback: 'style-loader',
-                    use: {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                })
-            }
         ]
     },
     //
@@ -100,6 +107,10 @@ module.exports = {
             // async: true,
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
+
+        extractApplicationCss,
+        extractGlobalCss,
+
     //     // new CopyWebpackPlugin(
     //     //     [
     //     //         { from: 'src/static_assets', to: 'files' }

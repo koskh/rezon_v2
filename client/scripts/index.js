@@ -1,7 +1,8 @@
 // @flow
 
+import '../styles/global.pcss';
+
 import 'babel-polyfill';
-// import 'raf/polyfill';
 
 // import _ from 'lodash';
 import invariant from 'invariant';
@@ -44,23 +45,28 @@ const rootEl = document && document.getElementById('root');
 invariant(rootEl, 'Cant find root element');
 
 ReactDOM.render(
-    <Provider store = {store}>
+    <Provider store={store}>
         <Router>
-            <div>
+            <section>
+                <header>
+                    <Navigate/>
+                </header>
 
-                <Navigate/>
+                <main className="container">
+                    <Switch>
+                        <OpenRoute exact path="/" component={Home}/>
+                        <PrivateRoute path="/tools" component={Tools}/>
+                        <OpenRoute path="/login" component={Login}/>
+                        <OpenRoute path="/about" component={About}/>
+                        <OpenRoute component={NotFound}/>
+                    </Switch>
+                </main>
 
-                <hr/>
+                <footer className="mt-3">
+                    &nbsp;
+                </footer>
 
-                <Switch>
-                    <OpenRoute exact path="/" component={Home}/>
-                    <PrivateRoute path="/tools" component={Tools}/>
-                    <OpenRoute path="/login" component={Login}/>
-                    <OpenRoute path="/about" component={About}/>
-                    <OpenRoute component={NotFound}/>
-                </Switch>
-
-            </div>
+            </section>
         </Router>
     </Provider>,
     rootEl
