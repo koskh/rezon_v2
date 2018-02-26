@@ -13,7 +13,7 @@ module.exports = {
     entry: {
         index: path.join(__dirname, '../client/scripts/index.js'),
         react: [
-            'react', 'react-dom', 'react-router', 'react-router-dom',
+            'react', 'react-dom', 'react-router', 'react-router-dom', 'react-intl',
             'redux', 'react-redux', 'react-router-redux', 'history'
         ],
 

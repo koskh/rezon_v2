@@ -10,6 +10,15 @@ import invariant from 'invariant';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
+import {addLocaleData, IntlProvider} from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import ru from 'react-intl/locale-data/ru'
+addLocaleData([...en, ...ru]);
+
+import i18n from '../i18n';
+const locale = i18n.getBrowserLocale();
+const messages =  i18n.getMessages(locale);
+
 import {BrowserRouter as Router, Switch} from "react-router-dom";
 import {OpenRoute, PrivateRoute} from './services/route'
 
@@ -45,30 +54,32 @@ const rootEl = document && document.getElementById('root');
 invariant(rootEl, 'Cant find root element');
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <section>
-                <header>
-                    <Navigate/>
-                </header>
+    <IntlProvider locale={locale} messages={messages}>
+        <Provider store={store}>
+            <Router>
+                <section>
+                    <header>
+                        <Navigate/>
+                    </header>
 
-                <main className="container">
-                    <Switch>
-                        <OpenRoute exact path="/" component={Home}/>
-                        <PrivateRoute path="/tools" component={Tools}/>
-                        <OpenRoute path="/login" component={Login}/>
-                        <OpenRoute path="/about" component={About}/>
-                        <OpenRoute component={NotFound}/>
-                    </Switch>
-                </main>
+                    <main className="container">
+                        <Switch>
+                            <OpenRoute exact path="/" component={Home}/>
+                            <PrivateRoute path="/tools" component={Tools}/>
+                            <OpenRoute path="/login" component={Login}/>
+                            <OpenRoute path="/about" component={About}/>
+                            <OpenRoute component={NotFound}/>
+                        </Switch>
+                    </main>
 
-                <footer className="mt-3">
-                    &nbsp;
-                </footer>
+                    <footer className="mt-3">
+                        &nbsp;
+                    </footer>
 
-            </section>
-        </Router>
-    </Provider>,
+                </section>
+            </Router>
+        </Provider>
+    </IntlProvider>,
     rootEl
 );
 
