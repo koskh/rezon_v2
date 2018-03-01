@@ -1,3 +1,10 @@
+import {addLocaleData} from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import ru from 'react-intl/locale-data/ru'
+
+addLocaleData([...en, ...ru]);
+
 const localeData ={
     'en': require('../i18n/en'),
     'ru': require('../i18n/ru')
