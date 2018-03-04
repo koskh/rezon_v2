@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-// import Header from '../../components/page-header';
+
+import LoginForm from '../../components/LoginForm';
 
 export default class extends React.Component<*> {
     componentWillMount() {
@@ -11,7 +12,7 @@ export default class extends React.Component<*> {
     render() {
         return (
             <article>
-                <h1>Страница логина.</h1>
+                <LoginForm/>
             </article>
         );
     }

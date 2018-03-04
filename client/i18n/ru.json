@@ -4,5 +4,7 @@
   "app.navigate.login": "Войти",
   "app.navigate.about": "О проекте",
   "app.test.hello-world": "И вам не хворать...",
-  "app.home.welcome": "Приветствую {name}, у вас {unreadCount, number} {unreadCount, plural, one {письмо} other {писем}}"
+  "app.home.welcome": "Приветствую {name}, у вас {unreadCount, number} {unreadCount, plural, one {письмо} other {писем}}",
+  "app.login.login": "Войдите, или ",
+  "app.login.signin": "Зарегестрируйтесь"
 }
