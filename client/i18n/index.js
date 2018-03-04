@@ -10,6 +10,8 @@ const localeData ={
     'ru': require('../i18n/ru')
 };
 
+const currencies = require('./currency');
+
 
 export default {
     getBrowserLocale() {
@@ -20,6 +22,10 @@ export default {
 
     getMessages(languageWithoutRegionCode) {
         return localeData[languageWithoutRegionCode] || localeData.en;
+    },
+
+    getCurrency(languageWithoutRegionCode) {
+        return currencies[languageWithoutRegionCode] || currencies.en;
     }
 }
 

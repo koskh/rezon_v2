@@ -3,5 +3,6 @@
   "app.navigate.tools": "Tools",
   "app.navigate.login": "Login",
   "app.navigate.about": "About",
-  "app.test.hello-world": "Hello world"
+  "app.test.hello-world": "Hello world",
+  "app.home.welcome": "Hello {name}, you have {unreadCount, number} {unreadCount, plural,  one {message} other {messages}}"
 }
