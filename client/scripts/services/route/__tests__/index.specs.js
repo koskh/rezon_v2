@@ -10,7 +10,7 @@ import {OpenRoute, PrivateRoute} from '../index';
 import FakeComponent from '../../../../../jest/__mocks__/fakeComponent';
 
 describe('services/OpenRoute', () => {
-    test('OpenRoute shouldsssssssss render inner component', () => {
+    test('OpenRoute should render inner component', () => {
         const component = mount(<Router><OpenRoute  path="/"  component={FakeComponent}/></Router>);
         expect(component.find(FakeComponent)).toHaveLength(1);
     });
