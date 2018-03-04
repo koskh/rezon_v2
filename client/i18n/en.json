@@ -5,7 +5,7 @@
   "app.navigate.about": "About",
   "app.test.hello-world": "Hello world",
   "app.home.welcome": "Hello {name}, you have {unreadCount, number} {unreadCount, plural,  one {message} other {messages}}",
-  "app.login.login": "Please Log In, or ",
+  "app.login.login": "Please Log In,",
   "app.login.signin": "Sign Up",
   "app.common.or": "or"
 }
