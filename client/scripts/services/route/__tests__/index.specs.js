@@ -7,17 +7,17 @@ import renderer from 'react-test-renderer';
 import fakeAuth from "../../auth";
 import {OpenRoute, PrivateRoute} from '../index';
 
-const FakeComponent = () => <div>Dumb test component</div>;
+import FakeComponent from '../../../../../jest/__mocks__/fakeComponent';
 
 describe('services/OpenRoute', () => {
-    test('OpenRoute can render inner component', () => {
+    test('OpenRoute shouldsssssssss render inner component', () => {
         const component = mount(<Router><OpenRoute  path="/"  component={FakeComponent}/></Router>);
         expect(component.find(FakeComponent)).toHaveLength(1);
     });
 });
 
 describe('services/PrivateRoute', () => {
-    test('PrivateRoute can render inner component if auth is ok', () => {
+    test('PrivateRoute should render inner component if auth is ok', () => {
         fakeAuth.authenticate(()=>{});
         const component = mount(<Router><PrivateRoute  path="/"  component={FakeComponent}/></Router>);
         expect(component.find(FakeComponent)).toHaveLength(1);
