@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import LoginForm from '../../components/LoginForm';
+import Login from '../../components/Login';
 
 export default class extends React.Component<*> {
     componentWillMount() {
@@ -12,7 +12,7 @@ export default class extends React.Component<*> {
     render() {
         return (
             <article>
-                <LoginForm/>
+                <Login/>
             </article>
         );
     }
