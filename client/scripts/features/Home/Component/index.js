@@ -9,7 +9,6 @@ export default class extends React.Component<*> {
     }
 
     render() {
-        // debugger;
         // const {history} = this.props;
         // history.push('login');
 
