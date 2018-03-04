@@ -7,5 +7,10 @@
   "app.home.welcome": "Hello {name}, you have {unreadCount, number} {unreadCount, plural,  one {message} other {messages}}",
   "app.login.login": "Please Log In,",
   "app.login.signin": "Sign Up",
+  "app.login.username": "Username or email",
+  "app.login.password": "Password",
+  "app.login.remember": "Remember me",
+  "app.login.login": "Log In",
+  "app.login.forgot": "Forgot password?",
   "app.common.or": "or"
 }

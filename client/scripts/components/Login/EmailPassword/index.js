@@ -2,6 +2,8 @@
 
 // import _ from 'lodash';
 import * as React from 'react';
+import {FormattedMessage} from 'react-intl';
+
 import styles from './index.pcss';
 
 
@@ -21,19 +23,19 @@ export default class EmailPassword extends React.Component<*> {
         return (
             <form role='form'>
                 <div className='form-group'>
-                    <label htmlFor='inputUsernameEmail'>Username or email</label>
+                    <label htmlFor='inputUsernameEmail'><FormattedMessage id='app.login.username'/></label>
                     <input type='text' className='form-control' id='inputUsernameEmail'/>
                 </div>
                 <div className='form-group'>
-                    <a className='pull-right' href='#'>Forgot password?</a>
-                    <label htmlFor='inputPassword'>Password</label>
+                    <a className='float-right' href='#'><FormattedMessage id='app.login.forgot'/></a>
+                    <label htmlFor='inputPassword'><FormattedMessage id='app.login.password'/></label>
                     <input type='password' className='form-control' id='inputPassword'/>
                 </div>
-                <div className='checkbox pull-right'>
-                    <label><input type='checkbox'/> Remember me </label>
+                <div className='checkbox float-right'>
+                    <label><input type='checkbox'/><FormattedMessage id='app.login.remember'/></label>
                 </div>
                 <button type='submit' className='btn btn btn-primary'>
-                    Log In
+                    <FormattedMessage id='app.login.login'/>
                 </button>
             </form>
         );

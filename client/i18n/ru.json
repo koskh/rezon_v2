@@ -7,5 +7,10 @@
   "app.home.welcome": "Приветствую {name}, у вас {unreadCount, number} {unreadCount, plural, one {письмо} other {писем}}",
   "app.login.login": "Войдите",
   "app.login.signin": "Зарегистрируйтесь",
+  "app.login.username": "Имя пользователя",
+  "app.login.password": "Пароль",
+  "app.login.forgot": "Забыли пароль?",
+  "app.login.remember": "Запомнить меня",
+  "app.login.login": "Войти",
   "app.common.or": "или"
 }

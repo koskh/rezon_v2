@@ -1,9 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/DumbBtn Component can render 1`] = `
-<button
-  onClick={[Function]}
+<form
+  role="form"
 >
-  TestTitle
-</button>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="inputUsernameEmail"
+    >
+      <span>
+        Username or email
+      </span>
+    </label>
+    <input
+      className="form-control"
+      id="inputUsernameEmail"
+      type="text"
+    />
+  </div>
+  <div
+    className="form-group"
+  >
+    <a
+      className="float-right"
+      href="#"
+    >
+      <span>
+        Forgot password?
+      </span>
+    </a>
+    <label
+      htmlFor="inputPassword"
+    >
+      <span>
+        Password
+      </span>
+    </label>
+    <input
+      className="form-control"
+      id="inputPassword"
+      type="password"
+    />
+  </div>
+  <div
+    className="checkbox float-right"
+  >
+    <label>
+      <input
+        type="checkbox"
+      />
+      <span>
+        Remember me
+      </span>
+    </label>
+  </div>
+  <button
+    className="btn btn btn-primary"
+    type="submit"
+  >
+    <span>
+      Log In
+    </span>
+  </button>
+</form>
 `;

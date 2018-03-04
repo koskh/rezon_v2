@@ -6,7 +6,8 @@ import {FormattedMessage} from 'react-intl';
 
 import styles from './index.pcss';
 
-import FormWelcome from './Welcome';
+import FormWelcome from './FormWelcome';
+import OtherServicesLogin from './OtherServicesLogin';
 import EmailPassword from './EmailPassword';
 
 type Props = {
@@ -31,12 +32,7 @@ export default class LoginForm extends React.Component<Props> {
 
                         <FormWelcome />
 
-                        <div className='login-or'>
-                            <hr className='hr-or'/>
-                            <span className='span-or'>
-                                <FormattedMessage id='app.common.or'/>
-                            </span>
-                        </div>
+                        <OtherServicesLogin />
 
                         <EmailPassword />
 
