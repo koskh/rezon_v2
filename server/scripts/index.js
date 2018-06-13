@@ -8,7 +8,7 @@ const path = require('path');
 // const configWebpack = require('../webpack/webpack.config');
 // const compiler = webpack(configWebpack);
 
-// const api = require('./api');
+const api = require('./api');
 
 const app = express();
 const host = '0.0.0.0';
@@ -28,7 +28,7 @@ const publicPath = path.resolve(__dirname, './static');
 // app.use(require("webpack-hot-middleware")(compiler));
 
 
-// app.use('/api', api);
+app.use('/api', api);
 
 app.use(express.static(publicPath));
 

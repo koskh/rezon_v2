@@ -5,6 +5,8 @@ import {FormattedMessage, FormattedDate, FormattedNumber} from 'react-intl';
 
 import i18n from '../../../../i18n';
 
+import Form from '../../../components/Form';
+
 export default class extends React.Component<*> {
     componentWillMount() {
         document.title = 'Home page';
@@ -45,6 +47,10 @@ export default class extends React.Component<*> {
                         currency={i18n.getCurrency(i18n.getBrowserLocale())}
                     />
                 </p>
+
+                <div>
+                    <Form title={'bla lba lba'}/>
+                </div>
             </div>
         );
     }
