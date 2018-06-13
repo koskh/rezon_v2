@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import BasedInput from './Input';
 
-type controlStateType = 'is-hint' | 'is-valid' | 'is-invalid'
+type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
 const DefaultControlState: controlStateType = 'is-hint';
 
@@ -24,7 +24,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element  {
         props: propsType;
         state: stateType = {
             controlState: DefaultControlState
-        }
+        };
 
         render() {
 
