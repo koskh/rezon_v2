@@ -4,27 +4,24 @@
 import * as React from 'react';
 import styles from './index.pcss';
 
+
 type Props = {
-   // title: string
+    children?: React.Node
 }
 
-class FormHeader extends React.Component<Props> {
-    props: Props;
+const defaultProps: Props = {
+    children: null
+};
 
-    render() {
-        // const { title } = this.props;
 
-        return (
-            <div className={styles.FormBody}>
-                <div>
-                    <input />
-                </div>
-                <div>
-                    <input />
-                </div>
-            </div>
-        );
-    }
-}
+const FormBody = (props: Props) => {
+    return (
+        <div className={styles.FormBody}>
+            {props.children}
+        </div>
+    )
+};
 
-export default FormHeader;
+FormBody.defaultProps = defaultProps;
+
+export default FormBody;

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`components/Form/FormHeader Component can render 1`] = `
-<div
-  className="FormHeader"
->
-  TestTitle Form Header
-</div>
-`;

@@ -13,3 +13,15 @@
 .btn:disabled {
   opacity: 0.45;
 }
+
+.hint-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color:#6c757d;
+}
+.form-control.is-hint ~ .hint-feedback,
+.form-control.is-hint ~ .hint-tooltip {
+  display: block;
+}

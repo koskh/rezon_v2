@@ -4,16 +4,22 @@ import * as React from 'react';
 
 import Form from './Form';
 
-import DefaultFormHeader from './Form/FormHeader';
-import DefaultFormBody from './Form/FormBody';
-import DefaultFormFooter from './Form/FormFooter';
+// import DefaultFormHeader from './Form/FormHeader';
+
+import FormBody from './Form/FormBody';
+import {Input} from './Form/FormBody/_components'
+
+// import DefaultFormFooter from './Form/FormFooter';
 
 
-export default ()=> {
-    return <Form
-        // formHeader={<DefaultFormHeader title={'bla bla bla'}/>}
-        formBody={<DefaultFormBody/>}
-        formFooter={<DefaultFormFooter/>}/>
+export default () => {
+    return <Form>
+
+        <FormBody>
+            <Input/>
+        </FormBody>
+
+    </Form>
 }
 
 

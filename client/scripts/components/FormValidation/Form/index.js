@@ -6,9 +6,10 @@ import styles from './index.pcss';
 
 
 type Props = {
-    formHeader?: React.Element<any>,
-    formBody?: React.Element<any>,
-    formFooter?: React.Element<any>
+    // formHeader?: React.Element<any>,
+    // formBody?: React.Element<any>,
+    // formFooter?: React.Element<any>,
+    children?: React.Node
 }
 //
 // type DefaultProps = {
@@ -20,11 +21,11 @@ type Props = {
 class Form extends React.Component<Props> {
     props: Props;
 
-    static defaultProps: Props = {
-        formHeader: null,
-        formBody: null,
-        formFooter: null
-    };
+    // static defaultProps: Props = {
+    //     formHeader: null,
+    //     formBody: null,
+    //     formFooter: null
+    // };
 
     // componentDidMount() {
     //
@@ -37,13 +38,11 @@ class Form extends React.Component<Props> {
 
     render() {
 
-        const {formHeader, formBody, formFooter} = this.props;
+        // const {formHeader, formBody, formFooter} = this.props;
 
         return (
             <form className={styles.form}>
-                {formHeader}
-                {formBody}
-                {formFooter}
+                {this.props.children}
             </form>
         );
     }
