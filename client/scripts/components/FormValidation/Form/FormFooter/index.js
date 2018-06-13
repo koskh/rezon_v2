@@ -6,14 +6,14 @@ import styles from './index.pcss';
 
 
 type Props = {
-   title: string
+   // title: string
 }
 
 class FormFooter extends React.Component<Props> {
     props: Props;
 
     render() {
-        const { title } = this.props;
+        // const { title } = this.props;
 
         return (
             <div className={styles.FormFooter}>

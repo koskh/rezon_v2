@@ -5,14 +5,14 @@ import * as React from 'react';
 import styles from './index.pcss';
 
 type Props = {
-   title: string
+   // title: string
 }
 
 class FormHeader extends React.Component<Props> {
     props: Props;
 
     render() {
-        const { title } = this.props;
+        // const { title } = this.props;
 
         return (
             <div className={styles.FormBody}>

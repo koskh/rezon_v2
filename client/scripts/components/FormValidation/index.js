@@ -9,9 +9,11 @@ import DefaultFormBody from './Form/FormBody';
 import DefaultFormFooter from './Form/FormFooter';
 
 
-
-export default () => {
-    return <Form FormHeader={DefaultFormHeader} FormBody={DefaultFormBody} FormFooter={DefaultFormFooter}/>
+export default ()=> {
+    return <Form
+        // formHeader={<DefaultFormHeader title={'bla bla bla'}/>}
+        formBody={<DefaultFormBody/>}
+        formFooter={<DefaultFormFooter/>}/>
 }
 
-// export default DefaultForm;
+

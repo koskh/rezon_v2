@@ -6,21 +6,25 @@ import styles from './index.pcss';
 
 
 type Props = {
-    FormHeader: any,
-    FormBody: any,
-    FormFooter: any
+    formHeader?: React.Element<any>,
+    formBody?: React.Element<any>,
+    formFooter?: React.Element<any>
 }
 //
 // type DefaultProps = {
-//     data: Object
+//     formHeader: null,
+//     formBody: null,
+//     formFooter: null
 // };
 
 class Form extends React.Component<Props> {
     props: Props;
 
-    // static defaultProps: DefaultProps = {
-    //     data: {}
-    // };
+    static defaultProps: Props = {
+        formHeader: null,
+        formBody: null,
+        formFooter: null
+    };
 
     // componentDidMount() {
     //
@@ -33,18 +37,13 @@ class Form extends React.Component<Props> {
 
     render() {
 
-        const {FormHeader, FormBody, FormFooter} = this.props;
+        const {formHeader, formBody, formFooter} = this.props;
 
         return (
             <form className={styles.form}>
-
-                {/*Заголовк формы*/}
-                <FormHeader />
-                {/*Компоненты ввода*/}
-                <FormBody/>
-                {/*Компоненты футера*/}
-                <FormFooter/>
-
+                {formHeader}
+                {formBody}
+                {formFooter}
             </form>
         );
     }
