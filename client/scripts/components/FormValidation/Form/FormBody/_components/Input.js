@@ -9,8 +9,10 @@ type Props =
     {
         defaultValue?: string,
         options: {},
-        controlState: string
+        controlState: string,
+        controlStateMsg: string,
         // onClick?: Function,
+        onChange?: Function,
         // name?: string,
         // children?: React.Node
     }
@@ -23,7 +25,10 @@ type Props =
 const defaultProps: Props = {
     defaultValue: '',
     options: {},
-    controlState: 'is-hint'
+    controlState: '',
+    controlStateMsg: '',
+    onChange: () => {
+    }
 };
 
 
@@ -32,10 +37,16 @@ const Input = (props: Props) => {
         <div className="form-group row">
             <label htmlFor="staticEmail" className="col-sm-4 col-form-label">Email</label>
             <div className="col-sm-20">
-                <input type="text" className= {cn('form-control', props.controlState)} id="" placeholder="" defaultValue={props.defaultValue} />
-                <div className="hint-feedback">Well never share your email with anyone else.</div>
-                <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">Please provide a valid zip.</div>
+                <input type="text"
+                    className={cn('form-control', props.controlState)}
+                    id=""
+                    placeholder=""
+                    defaultValue={props.defaultValue}
+                    onChange={props.onChange}
+                />
+                <div className="hint-feedback">{props.controlStateMsg}</div>
+                <div className="valid-feedback">{props.controlStateMsg}</div>
+                <div className="invalid-feedback">{props.controlStateMsg}</div>
             </div>
         </div>
     )
