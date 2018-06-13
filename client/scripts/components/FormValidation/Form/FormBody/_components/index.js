@@ -6,10 +6,10 @@ import * as React from 'react';
 
 import BasedInput from './Input';
 
-import type { Schema } from '../../../Validation/schema';
+import type {Schema} from '../../../Validation/schema';
+
 type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
-const DefaultControlState: controlStateType = 'is-hint';
 
 type propsType = {
     defaultValue?: any
@@ -22,29 +22,29 @@ type stateType = {
     controlStateMsg: string
 }
 
-function getWrappedFormBodyComponent(WrappedComponent: any, schema: any ): React.Element  {
+function getWrappedFormBodyComponent(WrappedComponent: any, schema: any): React.Element {
 
-    return class FormBodyComponent extends React.Component<propsType,stateType> {
+    return class FormBodyComponent extends React.Component<propsType, stateType> {
         props: propsType;
         state: stateType = {
             schema: schema,
             value: null,
-            controlState: DefaultControlState,
-            controlStateMsg:  _.get(schema, 'hint.msg') || ''
+            controlState:  _.get(schema, 'hint.msg') && 'is-hint' || '',
+            controlStateMsg: _.get(schema, 'hint.msg') || ''
         };
 
-        _getConvertedValue = (val: any): any =>{
+        _getConvertedValue = (val: any): any => {
             return _.get(this.state.schema, 'convert.action')(val) || val;
         };
 
         _getControlState = (val: any): any => {
             const inputRules = _.get(this.state.schema, 'inputRules');
 
-            let controlState =  _.get(this.state.schema, 'isValid.msg') && 'is-valid' ||  'is-hint';
-            let controlStateMsg =  _.get(this.state.schema, 'isValid.msg') ||  _.get(this.state.schema, 'hint.msg') || '';
+            let controlState = _.get(this.state.schema, 'isValid.msg') && 'is-valid' || _.get(this.state.schema, 'hint.msg') && 'is-hint' || '';
+            let controlStateMsg = _.get(this.state.schema, 'isValid.msg') || _.get(this.state.schema, 'hint.msg') || '';
 
-            _.each(inputRules, v=> {
-                if(!v.validate(val)){
+            _.each(inputRules, v => {
+                if (!v.validate(val)) {
                     controlState = 'is-invalid';
                     controlStateMsg = v.msg;
                 }
@@ -64,10 +64,10 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any ): React
 
             return (
                 <WrappedComponent
-                    defaultValue = {this.state.value}
-                    controlState = {this.state.controlState}
-                    controlStateMsg = {this.state.controlStateMsg}
-                    onChange = {this.onComponentChange}
+                    defaultValue={this.state.value}
+                    controlState={this.state.controlState}
+                    controlStateMsg={this.state.controlStateMsg}
+                    onChange={this.onComponentChange}
                 />
             );
         }
@@ -83,10 +83,14 @@ const schema = {
     hint: {
         msg: 'Hint tolltip for everyone'
     },
-    inputRules:[
+    inputRules: [
         {
             validate: value => value.length > 0,
             msg: 'Не может быть пустым'
+        },
+        {
+            validate: value => value.length < 5,
+            msg: 'Не может быть больше 5 символов'
         }
     ]
 }

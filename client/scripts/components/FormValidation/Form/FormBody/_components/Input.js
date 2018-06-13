@@ -5,6 +5,13 @@ import cn from 'classnames';
 
 // import styles from './index.pcss';
 
+const feedbackClasses = {
+    'is-hint': 'hint-feedback',
+    'is-valid': 'valid-feedback',
+    'is-invalid': 'invalid-feedback'
+};
+
+
 type Props =
     {
         defaultValue?: string,
@@ -33,6 +40,7 @@ const defaultProps: Props = {
 
 
 const Input = (props: Props) => {
+
     return (
         <div className="form-group row">
             <label htmlFor="staticEmail" className="col-sm-4 col-form-label">Email</label>
@@ -44,9 +52,7 @@ const Input = (props: Props) => {
                     defaultValue={props.defaultValue}
                     onChange={props.onChange}
                 />
-                <div className="hint-feedback">{props.controlStateMsg}</div>
-                <div className="valid-feedback">{props.controlStateMsg}</div>
-                <div className="invalid-feedback">{props.controlStateMsg}</div>
+                <div className={cn(feedbackClasses[props.controlState])}>{props.controlStateMsg}</div>
             </div>
         </div>
     )

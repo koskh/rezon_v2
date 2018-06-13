@@ -22,10 +22,10 @@ export type Schema = {
             action: (value: any) => any,
             msg: string
         },
-        hint?: {
+        hint?: { // Хинт для компонента формы
           msg: string
         },
-        isValid?: {
+        isValid?: { // Сообщение для валидного компонента формы
             msg: string
         },
         inputRules?: Array<{ // валидация ввода полей виджета
