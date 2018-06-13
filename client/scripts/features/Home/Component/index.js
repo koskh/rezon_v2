@@ -5,7 +5,7 @@ import {FormattedMessage, FormattedDate, FormattedNumber} from 'react-intl';
 
 import i18n from '../../../../i18n';
 
-import Form from '../../../components/Form';
+import Form from '../../../components/FormValidation';
 
 export default class extends React.Component<*> {
     componentWillMount() {

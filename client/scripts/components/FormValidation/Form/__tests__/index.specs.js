@@ -3,7 +3,7 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Form from '../';
+import Form from '../index';
 
 describe('components/Form', () => {
 

@@ -6,14 +6,16 @@ import styles from './index.pcss';
 
 
 type Props = {
-    title: string
+    FormHeader: any,
+    FormBody: any,
+    FormFooter: any
 }
 //
 // type DefaultProps = {
 //     data: Object
 // };
 
-class DumbBtn extends React.Component<Props> {
+class Form extends React.Component<Props> {
     props: Props;
 
     // static defaultProps: DefaultProps = {
@@ -31,30 +33,21 @@ class DumbBtn extends React.Component<Props> {
 
     render() {
 
+        const {FormHeader, FormBody, FormFooter} = this.props;
+
         return (
             <form className={styles.form}>
 
+                {/*Заголовк формы*/}
+                <FormHeader />
                 {/*Компоненты ввода*/}
-                <div className={styles.body}>
-                    <div>
-                        <input />
-                    </div>
-                    <div>
-                        <input />
-                    </div>
-                </div>
-
+                <FormBody/>
                 {/*Компоненты футера*/}
-                <div className={styles.footer}>
-
-                    <button> OK </button>
-                    <button> Cancel </button>
-
-                </div>
+                <FormFooter/>
 
             </form>
         );
     }
 }
 
-export default DumbBtn;
+export default Form;
