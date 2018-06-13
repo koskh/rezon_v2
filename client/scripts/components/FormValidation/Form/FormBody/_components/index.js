@@ -35,7 +35,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any ): React
 
         _getConvertedValue = (val: any): any =>{
             return _.get(this.state.schema, 'convert.action')(val) || val;
-        }
+        };
 
         _getControlState = (val: any): any => {
             const inputRules = _.get(this.state.schema, 'inputRules');
@@ -51,7 +51,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any ): React
             });
 
             return {controlState, controlStateMsg};
-        }
+        };
 
         onComponentChange = ev => {
             let value = this._getConvertedValue(ev.target.value);
@@ -83,6 +83,12 @@ const schema = {
     hint: {
         msg: 'Hint tolltip for everyone'
     },
+    inputRules:[
+        {
+            validate: value => value.length > 0,
+            msg: 'Не может быть пустым'
+        }
+    ]
 }
 
 export const Input = getWrappedFormBodyComponent(BasedInput, schema);
