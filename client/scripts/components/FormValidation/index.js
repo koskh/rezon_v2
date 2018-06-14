@@ -49,6 +49,16 @@ const schema = {
                 validate: value => value.length <= 5,
                 msg: 'Не может быть больше 5 символов'
             }
+        ],
+        logicRules:[
+            {
+                validate: fields => {
+                    const {email, email2} = fields;
+
+                    return email.length >= email2.length
+                },
+                msg: 'email.length должна быть >= чем email2.length'
+            },
         ]
     }
 }

@@ -80,9 +80,28 @@ class FormBody extends React.Component<propsType> {
     }
 
     validate = () => {
-        _.each(this.formBodyComponents, v => {
-            v.validate()
+        let resultValidate = {};
+
+        let isInputValid = true;
+
+        _.each(this.formBodyComponents, (v,k) => { //валидац введенных значений
+            resultValidate[k] = v.validateInputRules();
+            if ( resultValidate[k].controlState === "is-invalid")
+                isInputValid = false
         });
+
+        if(isInputValid) {
+            let fields = {};
+            _.each(this.formBodyComponents, (v,k) => { //валидац введенных значений
+                fields[k] = v.getControlValue();
+            });
+
+            _.each(this.formBodyComponents, (v,k) => { //валидац логических значений
+                resultValidate[k] = v.validateLogicRules(fields);
+            });
+        }
+
+        return resultValidate;
     }
 
     render() {
