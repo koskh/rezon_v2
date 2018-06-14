@@ -12,7 +12,8 @@ type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
 
 type propsType = {
-    defaultValue?: any
+    id?: string,
+    defaultValue?: any,
 }
 
 type stateType = {
@@ -72,6 +73,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any = {}): R
 
             return (
                 <WrappedComponent
+                    id={this.props.id}
                     defaultValue={this.state.value}
                     controlState={this.state.controlState}
                     controlStateMsg={this.state.controlStateMsg}

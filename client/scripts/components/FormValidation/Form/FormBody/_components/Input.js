@@ -20,7 +20,7 @@ type Props =
         controlStateMsg: string,
         // onClick?: Function,
         onChange?: Function,
-        // name?: string,
+        id?: string,
         // children?: React.Node
     }
 
@@ -34,6 +34,7 @@ const defaultProps: Props = {
     options: {},
     controlState: '',
     controlStateMsg: '',
+    id:'',
     onChange: () => {
     }
 };
@@ -43,11 +44,11 @@ const Input = (props: Props) => {
 
     return (
         <div className="form-group row">
-            <label htmlFor="staticEmail" className="col-sm-4 col-form-label">Email</label>
+            <label htmlFor={props.id} className="col-sm-4 col-form-label">Email</label>
             <div className="col-sm-20">
                 <input type="text"
                     className={cn('form-control', props.controlState)}
-                    id=""
+                    id={props.id}
                     placeholder=""
                     defaultValue={props.defaultValue}
                     onChange={props.onChange}
