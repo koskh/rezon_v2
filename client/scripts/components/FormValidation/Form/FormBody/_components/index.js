@@ -53,7 +53,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             let {controlState, controlStateMsg} = this._getControlStateForInputRules(value);
             this.setState(
                 {value, controlState, controlStateMsg},
-                () => this.props.onChange && this.props.onChange({id: this.props.id, value, controlState, controlStateMsg})
+                () => this.props.onChange && this.props.onChange(this)
             );
 
         };
@@ -66,15 +66,14 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return this.state.controlState;
         }
 
-        validateInputRules(): any {
-            let value = this._getConvertedValue(this.state.value);
-            let {controlState, controlStateMsg} = this._getControlStateForInputRules(value);
+        validateInputRules(value): any {
+            let val = this._getConvertedValue(value);
+            let {controlState, controlStateMsg} = this._getControlStateForInputRules(val);
             this.setState({controlState, controlStateMsg});
             return {controlState, controlStateMsg};
         }
 
         validateLogicRules(fields: any): any {
-            let value = this._getConvertedValue(this.state.value);
             let {controlState, controlStateMsg} = this._getControlStateForLogicRules(fields);
             this.setState({controlState, controlStateMsg});
             return {controlState, controlStateMsg};

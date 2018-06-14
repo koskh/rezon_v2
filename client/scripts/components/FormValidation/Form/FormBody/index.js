@@ -70,13 +70,10 @@ class FormBody extends React.Component<propsType> {
     //     return isValid;
     // };
 
-    isFormValid(): boolean {
-        let isValid = true;
-        _.each(this.formBodyComponents, v => {
-            if (v.getControlState() === 'is-invalid')
-                return isValid = false;
-        });
-        return isValid;
+    isValid(): boolean {
+        let resultValidate = this.validate();
+        let isFinded = _.filter(resultValidate, {controlState:'is-invalid'});
+        return isFinded.length === 0;
     }
 
     validate = () => {
@@ -85,14 +82,14 @@ class FormBody extends React.Component<propsType> {
         let isInputValid = true;
 
         _.each(this.formBodyComponents, (v,k) => { //валидац введенных значений
-            resultValidate[k] = v.validateInputRules();
+            resultValidate[k] = v.validateInputRules(v.getControlValue());
             if ( resultValidate[k].controlState === "is-invalid")
                 isInputValid = false
         });
 
         if(isInputValid) {
             let fields = {};
-            _.each(this.formBodyComponents, (v,k) => { //валидац введенных значений
+            _.each(this.formBodyComponents, (v,k) => {
                 fields[k] = v.getControlValue();
             });
 
