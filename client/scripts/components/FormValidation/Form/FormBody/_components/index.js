@@ -13,6 +13,7 @@ type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
 type propsType = {
     id?: string,
+    onRef?: Function,
     defaultValue?: any,
     onChange?: Function,
     schema?: componentSchemaType
@@ -40,6 +41,37 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             controlStateMsg: _.get(this.props, 'schema.hint.msg') || ''
         };
 
+        componentDidMount() {
+            this.props.onRef && this.props.onRef(this)
+        }
+        componentWillUnmount() {
+            this.props.onRef && this.props.onRef(undefined)
+        }
+
+        _onComponentChange = ev => {
+            let value = this._getConvertedValue(ev.target.value);
+            let {controlState, controlStateMsg} = this._getControlState(value);
+            this.setState(
+                {value, controlState, controlStateMsg},
+                () => this.props.onChange && this.props.onChange({id: this.props.id, value, controlState, controlStateMsg})
+            );
+
+        };
+
+        getControlValue(): any{
+            return this.state.value;
+        }
+
+        getControlState(): controlStateType {
+            return this.state.controlState;
+        }
+
+        // validate(): void {
+        //     let value = this._getConvertedValue(this.state.value);
+        //     let {controlState, controlStateMsg} = this._getControlState(value);
+        //     this.setState({controlState, controlStateMsg});
+        // }
+
         _getConvertedValue = (val: any): any => {
             return _.get(this.props, 'schema.convert.action')(val) || val;
         };
@@ -59,23 +91,6 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
 
             return {controlState, controlStateMsg};
         };
-
-        _onComponentChange = ev => {
-            let value = this._getConvertedValue(ev.target.value);
-            let {controlState, controlStateMsg} = this._getControlState(value);
-
-            this.setState({value, controlState, controlStateMsg});
-
-            this.props.onChange && this.props.onChange({id: this.props.id, value, controlState, controlStateMsg});
-        };
-
-        getValue(): any{
-            return this.state.value;
-        }
-
-        getState(): controlStateType {
-            return this.state.controlState;
-        }
 
         render() {
 

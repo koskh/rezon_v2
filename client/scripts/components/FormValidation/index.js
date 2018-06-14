@@ -26,7 +26,7 @@ const schema = {
                 msg: 'Не может быть пустым'
             },
             {
-                validate: value => value.length < 5,
+                validate: value => value.length <= 5,
                 msg: 'Не может быть больше 5 символов'
             }
         ]

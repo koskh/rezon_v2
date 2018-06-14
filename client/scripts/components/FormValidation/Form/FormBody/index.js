@@ -39,15 +39,31 @@ class FormBody extends React.Component<propsType> {
             const defaultValue = child.props.defaultValue;
             const schema = child.props.schema || _.get(this.props, 'formSchema')[id];
 
-            this.formBodyComponents[id] = React.cloneElement(child, {id, onChange: this._onComponentChange, defaultValue, schema});
-
-            return this.formBodyComponents[id];
+            return  React.cloneElement(child, {
+                id,
+                onRef: ref => { this.formBodyComponents[id] = ref},
+                onChange: this._onComponentChange,
+                defaultValue,
+                schema
+            });
         });
     };
 
-    _onComponentChange = () => {
-        this.props.onChange && this.props.onChange();
-    }
+    _onComponentChange = (opt: any) => {
+        const isFormValid = this._isFormBodyValid();
+        this.props.onChange && this.props.onChange({isFormValid});
+    };
+
+    _isFormBodyValid = (): boolean => {
+        let isValid = true;
+
+        _.each(this.formBodyComponents, v => {
+            if (v.getControlState() === 'is-invalid') 
+                return isValid = false;
+        });
+
+        return isValid;
+    };
 
     render() {
         return (
