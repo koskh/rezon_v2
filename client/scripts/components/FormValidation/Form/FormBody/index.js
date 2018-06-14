@@ -9,7 +9,8 @@ import type {formSchemaType} from "../../Validation/schema";
 type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 type formBodyComponentsType = {[key: string]: React.Component<*>}
 
-type Props = {
+type propsType = {
+    formSchema?: formSchemaType,
     children?: React.Node,
     onChange?: Function
 }
@@ -19,11 +20,10 @@ type Props = {
 // }
 
 
-class FormBody extends React.Component<Props> {
-    props: Props;
+class FormBody extends React.Component<propsType> {
+    props: propsType;
 
-    static defaultProps: Props = {
-        children: null,
+    static defaultProps: propsType = {
         onChange: x=>x
     };
 
@@ -37,8 +37,9 @@ class FormBody extends React.Component<Props> {
         return React.Children.map(props.children, child => {
             const id = child.props.id || _.uniqueId('frm-cmp-vld_');
             const defaultValue = child.props.defaultValue;
+            const schema = child.props.schema || _.get(this.props, 'formSchema')[id];
 
-            this.formBodyComponents[id] = React.cloneElement(child, {id, onChange: this._onComponentChange, defaultValue});
+            this.formBodyComponents[id] = React.cloneElement(child, {id, onChange: this._onComponentChange, defaultValue, schema});
 
             return this.formBodyComponents[id];
         });

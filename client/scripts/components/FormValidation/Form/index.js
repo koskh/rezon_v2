@@ -18,7 +18,7 @@ class Form extends React.Component<Props> {
     };
 
     _onFormBodyChange = () =>{
-        debugger;
+        // debugger;
     };
 
     // _onFormFooterChange = () =>{
