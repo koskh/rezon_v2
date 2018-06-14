@@ -73,7 +73,8 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
         }
 
         _getConvertedValue = (val: any): any => {
-            return _.get(this.props, 'schema.convert.action')(val) || val;
+            const converter = _.get(this.props, 'schema.convert.action');
+            return converter ? converter(val) : val;
         };
 
         _getControlState = (val: any): {controlState: controlStateType, controlStateMsg: string} => {
@@ -86,6 +87,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
                 if (!v.validate(val)) {
                     controlState = 'is-invalid';
                     controlStateMsg = v.msg;
+                    return false;
                 }
             });
 
