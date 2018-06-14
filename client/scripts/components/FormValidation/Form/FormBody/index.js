@@ -79,7 +79,7 @@ class FormBody extends React.Component<propsType> {
         return isValid;
     }
 
-    validateFormBody = () => {
+    validate = () => {
         _.each(this.formBodyComponents, v => {
             v.validate()
         });

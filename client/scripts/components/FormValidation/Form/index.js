@@ -30,11 +30,13 @@ class Form extends React.Component<Props> {
     // };
 
     _onOkClick = () => {
-        debugger;
-    }
+        this.formComponents['FormBody'] && this.formComponents['FormBody'].validate()
+
+    };
+
     _onCancelClick = () => {
         debugger;
-    }
+    };
 
     render() {
         return (
@@ -44,7 +46,7 @@ class Form extends React.Component<Props> {
 
                     return React.cloneElement(child, {
                         onOkClick: this._onOkClick,
-                        onCancelClick:this._onCancelClick,
+                        onCancelClick: this._onCancelClick,
                         onChange: this._onFormBodyChange,
                         onRef: ref => { this.formComponents[childName] = ref},
                     });
