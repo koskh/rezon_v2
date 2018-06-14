@@ -3,7 +3,8 @@
 import _ from 'lodash';
 import * as React from 'react';
 import styles from './index.pcss';
-import type {Schema} from "../../Validation/schema";
+
+import type {formSchemaType} from "../../Validation/schema";
 
 type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 type formBodyComponentsType = {[key: string]: React.Component<*>}

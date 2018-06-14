@@ -11,12 +11,34 @@ import {Input} from './Form/FormBody/_components'
 
 // import DefaultFormFooter from './Form/FormFooter';
 
+const schema = {
+    email: {
+        convert: { // приведение получаемого "значения виджета" к требуемому типу
+            action: value => value,
+            msg: 'Не могу сконвертить'
+        },
+        hint: {
+            msg: 'Hint tolltip for everyone'
+        },
+        inputRules: [
+            {
+                validate: value => value.length > 0,
+                msg: 'Не может быть пустым'
+            },
+            {
+                validate: value => value.length < 5,
+                msg: 'Не может быть больше 5 символов'
+            }
+        ]
+    }
+}
+
 
 export default () => {
     return <Form>
 
-        <FormBody>
-            <Input/>
+        <FormBody formSchema={schema}>
+            <Input id={'email'}/>
         </FormBody>
 
     </Form>

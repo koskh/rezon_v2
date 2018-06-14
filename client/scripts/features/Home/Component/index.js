@@ -5,7 +5,7 @@ import {FormattedMessage, FormattedDate, FormattedNumber} from 'react-intl';
 
 import i18n from '../../../../i18n';
 
-import Form from '../../../components/FormValidation';
+import TestForm from '../../../components/FormValidation';
 
 export default class extends React.Component<*> {
     componentWillMount() {
@@ -49,7 +49,7 @@ export default class extends React.Component<*> {
                 </p>
 
                 <div>
-                    <Form title={'bla lba lba'}/>
+                    <TestForm/>
                 </div>
             </div>
         );

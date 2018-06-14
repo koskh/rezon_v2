@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import BasedInput from './Input';
 
-import type {Schema} from '../../../Validation/schema';
+import type {componentSchemaType} from "../../../Validation/schema";
 
 type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
@@ -18,13 +18,13 @@ type propsType = {
 }
 
 type stateType = {
-    schema?: Schema,
+    schema?: componentSchemaType,
     value: any,
     controlState: controlStateType,
     controlStateMsg: string
 }
 
-function getWrappedFormBodyComponent(WrappedComponent: any, schema: any = {}): React.Element {
+function getWrappedFormBodyComponent(WrappedComponent: any, schema: componentSchemaType = {}): React.Element {
 
     return class FormBodyComponent extends React.Component<propsType, stateType> {
         props: propsType;
