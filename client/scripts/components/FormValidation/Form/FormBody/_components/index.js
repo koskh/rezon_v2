@@ -22,7 +22,7 @@ type stateType = {
     controlStateMsg: string
 }
 
-function getWrappedFormBodyComponent(WrappedComponent: any, schema: any): React.Element {
+function getWrappedFormBodyComponent(WrappedComponent: any, schema: any = {}): React.Element {
 
     return class FormBodyComponent extends React.Component<propsType, stateType> {
         props: propsType;
@@ -37,7 +37,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any): React.
             return _.get(this.state.schema, 'convert.action')(val) || val;
         };
 
-        _getControlState = (val: any): any => {
+        _getControlState = (val: any): {controlState: controlStateType, controlStateMsg: string} => {
             const inputRules = _.get(this.state.schema, 'inputRules');
 
             let controlState = _.get(this.state.schema, 'isValid.msg') && 'is-valid' || _.get(this.state.schema, 'hint.msg') && 'is-hint' || '';
@@ -53,12 +53,20 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any): React.
             return {controlState, controlStateMsg};
         };
 
-        onComponentChange = ev => {
+        _onComponentChange = ev => {
             let value = this._getConvertedValue(ev.target.value);
             let {controlState, controlStateMsg} = this._getControlState(value);
 
             this.setState({value, controlState, controlStateMsg})
         };
+
+        getValue(): any{
+            return this.state.value;
+        }
+
+        getState(): controlStateType {
+            return this.state.controlState;
+        }
 
         render() {
 
@@ -67,7 +75,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any): React.
                     defaultValue={this.state.value}
                     controlState={this.state.controlState}
                     controlStateMsg={this.state.controlStateMsg}
-                    onChange={this.onComponentChange}
+                    onChange={this._onComponentChange}
                 />
             );
         }
