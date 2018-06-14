@@ -31,7 +31,8 @@ class Form extends React.Component<Props> {
 
     _onOkClick = () => {
         // this.formComponents['FormBody'] && this.formComponents['FormBody'].validate();
-        this.formComponents['FormBody'] && this.formComponents['FormBody'].isValid();
+        // this.formComponents['FormBody'] && this.formComponents['FormBody'].isValid();
+        console.log('getFormBodyValue ', this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValue()) ;
 
     };
 
