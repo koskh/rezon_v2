@@ -14,6 +14,7 @@ type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 type propsType = {
     id?: string,
     defaultValue?: any,
+    onChange?: Function
 }
 
 type stateType = {
@@ -27,9 +28,16 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any = {}): R
 
     return class FormBodyComponent extends React.Component<propsType, stateType> {
         props: propsType;
+
+        static defaultProps: propsType = {
+            id: '',
+            defaultValue: null,
+            onChange: v=>v
+        };
+
         state: stateType = {
             schema: schema,
-            value: null,
+            value: this.props.defaultValue,
             controlState:  _.get(schema, 'hint.msg') && 'is-hint' || '',
             controlStateMsg: _.get(schema, 'hint.msg') || ''
         };
@@ -58,7 +66,9 @@ function getWrappedFormBodyComponent(WrappedComponent: any, schema: any = {}): R
             let value = this._getConvertedValue(ev.target.value);
             let {controlState, controlStateMsg} = this._getControlState(value);
 
-            this.setState({value, controlState, controlStateMsg})
+            this.setState({value, controlState, controlStateMsg});
+
+            this.props.onChange && this.props.onChange({id: this.props.id, value, controlState, controlStateMsg});
         };
 
         getValue(): any{

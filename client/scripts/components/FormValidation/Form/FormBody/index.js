@@ -3,54 +3,51 @@
 import _ from 'lodash';
 import * as React from 'react';
 import styles from './index.pcss';
+import type {Schema} from "../../Validation/schema";
 
+type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
+type formBodyComponentsType = {[key: string]: React.Component<*>}
 
 type Props = {
-    children?: React.Node
+    children?: React.Node,
+    onChange?: Function
 }
+
+// type stateType = {
+//     formBodyComponents: {[key: string]: {controlState: controlStateType}}
+// }
 
 
 class FormBody extends React.Component<Props> {
     props: Props;
 
     static defaultProps: Props = {
-        children: null
+        children: null,
+        onChange: x=>x
     };
 
-    // componentDidMount() {
-    //
-    // }
-    //
-    // componentWillUnmount() {
-    //
-    // }
+    // state: stateType = {
+    // formBodyComponents: {}
+    // };
+
+    formBodyComponents: formBodyComponentsType = {}; // состояние вложенных компонентов
 
     _renderChildren = (props: any) => {
         return React.Children.map(props.children, child => {
             const id = child.props.id || _.uniqueId('frm-cmp-vld_');
-            //
-            // const name: string = child.props.name;
-            // const model = this.state.model;
-            //
-            // const modelValue = model.data[name];
-            // const defaultValue = child.props.defaultValue;
-            //
-            // if (!_.isNil(name) && _.isNil(modelValue) && !_.isNil(defaultValue)) // заполняем модель формы внешними данными
-            //     model.data[name] = defaultValue;
-            //
-            // if (child.props.isValidated) {
-            //     const validationState: validationStates = validator.getValidationState(name, model);
-            //     const feedbackText: string = validator.getFeedbackText(name, model);
-            //
-            //     return React.cloneElement(child, { id, onChange: this.onFormChange, validationState, feedbackText });
-            // }
+            const defaultValue = child.props.defaultValue;
 
-            return React.cloneElement(child, { id});
+            this.formBodyComponents[id] = React.cloneElement(child, {id, onChange: this._onComponentChange, defaultValue});
+
+            return this.formBodyComponents[id];
         });
     };
 
-    render() {
+    _onComponentChange = () => {
+        this.props.onChange && this.props.onChange();
+    }
 
+    render() {
         return (
             <div className={styles.FormBody}>
                 {this._renderChildren(this.props)}

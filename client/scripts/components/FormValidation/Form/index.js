@@ -11,11 +11,26 @@ type Props = {
 class Form extends React.Component<Props> {
     props: Props;
 
+    _renderChildren = (props: any) => {
+        return React.Children.map(props.children, child => {
+            return React.cloneElement(child, {onChange: this._onFormBodyChange});
+        });
+    };
+
+    _onFormBodyChange = () =>{
+        debugger;
+    };
+
+    // _onFormFooterChange = () =>{
+    //     debugger;
+    // };
 
     render() {
         return (
             <form className={styles.form}>
-                {this.props.children}
+                {React.Children.map(this.props.children, child => {
+                    return React.cloneElement(child, {onChange: this._onFormBodyChange});
+                })}
             </form>
         );
     }
