@@ -66,11 +66,11 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return this.state.controlState;
         }
 
-        // validate(): void {
-        //     let value = this._getConvertedValue(this.state.value);
-        //     let {controlState, controlStateMsg} = this._getControlState(value);
-        //     this.setState({controlState, controlStateMsg});
-        // }
+        validate(): void {
+            let value = this._getConvertedValue(this.state.value);
+            let {controlState, controlStateMsg} = this._getControlState(value);
+            this.setState({controlState, controlStateMsg});
+        }
 
         _getConvertedValue = (val: any): any => {
             return _.get(this.props, 'schema.convert.action')(val) || val;

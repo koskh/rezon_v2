@@ -57,28 +57,32 @@ class FormBody extends React.Component<propsType> {
         });
     };
 
-    _onComponentChange = (opt: any) => {
-        // const isFormValid = this._isFormBodyValid();
+    _onComponentChange = () => {
         this.props.onChange && this.props.onChange(this);
     };
 
-    _isFormBodyValid = (): boolean => {
-        let isValid = true;
-
-        _.each(this.formBodyComponents, v => {
-            if (v.getControlState() === 'is-invalid') 
-                return isValid = false;
-        });
-
-        return isValid;
-    };
+    // _isFormBodyValid = (): boolean => {
+    //     let isValid = true;
+    //     _.each(this.formBodyComponents, v => {
+    //         if (v.getControlState() === 'is-invalid')
+    //             return isValid = false;
+    //     });
+    //     return isValid;
+    // };
 
     isFormValid(): boolean {
-        return this._isFormBodyValid();
+        let isValid = true;
+        _.each(this.formBodyComponents, v => {
+            if (v.getControlState() === 'is-invalid')
+                return isValid = false;
+        });
+        return isValid;
     }
 
     validateFormBody = () => {
-
+        _.each(this.formBodyComponents, v => {
+            v.validate()
+        });
     }
 
     render() {

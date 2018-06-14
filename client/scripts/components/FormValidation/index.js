@@ -9,7 +9,7 @@ import Form from './Form';
 import FormBody from './Form/FormBody';
 import {Input} from './Form/FormBody/_components'
 
-// import DefaultFormFooter from './Form/FormFooter';
+import FormFooter from './Form/FormFooter';
 
 const schema = {
     email: {
@@ -38,8 +38,11 @@ export default () => {
     return <Form>
 
         <FormBody formSchema={schema}>
-            <Input id={'email'}/>
+            <Input id={'email'} defaultValue={'1234567'}/>
         </FormBody>
+
+        <FormFooter>
+        </FormFooter>
 
     </Form>
 }

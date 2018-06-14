@@ -6,21 +6,34 @@ import styles from './index.pcss';
 
 
 type Props = {
-   // title: string
+    children?: React.Node,
+    onOkClick?: Function,
+    onCancelClick?: Function,
 }
 
 class FormFooter extends React.Component<Props> {
     props: Props;
 
-    render() {
-        // const { title } = this.props;
+    _onOkClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
 
+        this.props.onOkClick && this.props.onOkClick()
+    };
+
+    _onCancelClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        this.props.onCancelClick && this.props.onCancelClick()
+    };
+
+    render() {
         return (
             <div className={styles.FormFooter}>
-
-                <button> OK </button>
-                <button> Cancel </button>
-
+                {this.props.children}
+                <button onClick={this._onOkClick}> OK </button>
+                <button onClick={this._onCancelClick}> Cancel </button>
             </div>
         );
     }
