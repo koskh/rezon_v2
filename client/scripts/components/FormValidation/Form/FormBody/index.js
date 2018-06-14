@@ -12,7 +12,8 @@ type formBodyComponentsType = {[key: string]: React.Component<*>}
 type propsType = {
     formSchema?: formSchemaType,
     children?: React.Node,
-    onChange?: Function
+    onChange?: Function,
+    onRef?: Function
 }
 
 // type stateType = {
@@ -33,6 +34,13 @@ class FormBody extends React.Component<propsType> {
 
     formBodyComponents: formBodyComponentsType = {}; // состояние вложенных компонентов
 
+    componentDidMount() {
+        this.props.onRef && this.props.onRef(this)
+    }
+    componentWillUnmount() {
+        this.props.onRef && this.props.onRef(undefined)
+    }
+
     _renderChildren = (props: any) => {
         return React.Children.map(props.children, child => {
             const id = child.props.id || _.uniqueId('frm-cmp-vld_');
@@ -50,8 +58,8 @@ class FormBody extends React.Component<propsType> {
     };
 
     _onComponentChange = (opt: any) => {
-        const isFormValid = this._isFormBodyValid();
-        this.props.onChange && this.props.onChange({isFormValid});
+        // const isFormValid = this._isFormBodyValid();
+        this.props.onChange && this.props.onChange(this);
     };
 
     _isFormBodyValid = (): boolean => {
@@ -64,6 +72,14 @@ class FormBody extends React.Component<propsType> {
 
         return isValid;
     };
+
+    isFormValid(): boolean {
+        return this._isFormBodyValid();
+    }
+
+    validateFormBody = () => {
+
+    }
 
     render() {
         return (

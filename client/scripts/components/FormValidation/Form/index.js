@@ -17,9 +17,9 @@ class Form extends React.Component<Props> {
         });
     };
 
-    _onFormBodyChange = (opt: any) =>{
-        const {isFormValid} = opt;
-        // debugger;
+    _onFormBodyChange = (formBodyComponent: any) =>{
+        const isFormValid = formBodyComponent.isFormValid();
+
         console.log('isFormValid:', isFormValid)
     };
 
