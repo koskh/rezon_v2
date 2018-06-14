@@ -14,14 +14,14 @@ type Props = {
 class FormFooter extends React.Component<Props> {
     props: Props;
 
-    _onOkClick = (e) => {
+    _onOkClick = (e: any) => {
         e.stopPropagation();
         e.preventDefault();
 
         this.props.onOkClick && this.props.onOkClick()
     };
 
-    _onCancelClick = (e) => {
+    _onCancelClick = (e: any) => {
         e.stopPropagation();
         e.preventDefault();
 
