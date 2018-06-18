@@ -4,9 +4,6 @@ import _ from 'lodash';
 import * as React from 'react';
 import styles from './index.pcss';
 
-import type {formSchemaType} from "../../Validation/schema";
-
-type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 type formBodyComponentsType = {[key: string]: React.Component<*>}
 
 type propsType = {
@@ -77,6 +74,10 @@ class FormBody extends React.Component<propsType> {
 
         return fields;
     };
+
+    // setErrors = (validateResult) => {
+    //     _.each(vali)
+    // };
 
     render() {
         return (

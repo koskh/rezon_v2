@@ -7,10 +7,6 @@ import * as React from 'react';
 import BasedInput from './Input';
 import BasedPassword from './Password';
 
-import type {componentSchemaType} from "../../../Validation/schema";
-
-type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
-
 
 type propsType = {
     id?: string,
@@ -99,7 +95,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return converter ? converter(val) : val;
         };
 
-        _getControlStateForInputRules = (val: any): { controlState: controlStateType, controlStateMsg: string } => {
+        _getControlStateForInputRules = (val: any): validateResultType => {
             const inputRules = _.get(this.props, 'schema.inputRules');
 
             let controlState = _.get(this.props, 'schema.isValid.msg') && 'is-valid' || _.get(this.props, 'schema.hint.msg') && 'is-hint' || '';
@@ -116,7 +112,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return {controlState, controlStateMsg};
         };
 
-        _getControlStateForLogicRules = (fields: any): { controlState: controlStateType, controlStateMsg: string } => {
+        _getControlStateForLogicRules = (fields: any): validateResultType => {
             const logicRules = _.get(this.props, 'schema.logicRules');
 
             let controlState = _.get(this.props, 'schema.isValid.msg') && 'is-valid' || _.get(this.props, 'schema.hint.msg') && 'is-hint' || '';
