@@ -4,7 +4,7 @@ import _ from 'lodash';
 import * as React from 'react';
 import styles from './index.pcss';
 
-type formBodyComponentsType = {[key: string]: React.Component<*>}
+type formBodyComponentsType = { [key: string]: React.Component<*> }
 
 type propsType = {
     formSchema?: formSchemaType,
@@ -22,7 +22,7 @@ class FormBody extends React.Component<propsType> {
     props: propsType;
 
     static defaultProps: propsType = {
-        onChange: x=>x
+        onChange: x => x
     };
 
     // state: stateType = {
@@ -34,25 +34,26 @@ class FormBody extends React.Component<propsType> {
     componentDidMount() {
         this.props.onRef && this.props.onRef(this)
     }
+
     componentWillUnmount() {
         this.props.onRef && this.props.onRef(undefined)
     }
 
 
-    validate = () => {
+    validate = (): validateResultsType => {
         let resultValidate = {};
 
         let isInputValid = true;
 
-        _.each(this.formBodyComponents, (v,k) => { //валидац введенных значений
-            resultValidate[k] = v.validateInputRules(v.getControlValue());
-            if ( resultValidate[k].controlState === "is-invalid")
+        _.each(this.formBodyComponents, (v, k) => { //валидац введенных значений
+            resultValidate[k] = v.validateInputRules(v.componentState);
+            if (resultValidate[k].controlState === "is-invalid")
                 isInputValid = false
         });
 
-        if(isInputValid) {
+        if (isInputValid) {
             let fields = this.getFormBodyValue();
-            _.each(this.formBodyComponents, (v,k) => { //валидац логических значений
+            _.each(this.formBodyComponents, (v, k) => { //валидац логических значений
                 resultValidate[k] = v.validateLogicRules(fields);
             });
         }
@@ -68,16 +69,20 @@ class FormBody extends React.Component<propsType> {
 
     getFormBodyValue = () => {
         let fields = {};
-        _.each(this.formBodyComponents, (v,k) => {
-            fields[k] = v.getControlValue();
+        _.each(this.formBodyComponents, (v, k) => {
+            fields[k] = v.componentValue;
         });
 
         return fields;
     };
 
-    // setErrors = (validateResult) => {
-    //     _.each(vali)
-    // };
+    setErrors = (validateResults: validateResultsType) => {
+        _.each(validateResults, (v, k) => {
+            this.formBodyComponents[k].componentState = validateResults[k];
+        })
+
+        debugger;
+    };
 
     render() {
         return (
@@ -86,6 +91,7 @@ class FormBody extends React.Component<propsType> {
             </div>
         );
     }
+
     _onComponentChange = () => {
         this.props.onChange && this.props.onChange(this);
     };
@@ -96,9 +102,11 @@ class FormBody extends React.Component<propsType> {
             const defaultValue = child.props.defaultValue;
             const schema = child.props.schema || _.get(this.props, 'formSchema')[id];
 
-            return  React.cloneElement(child, {
+            return React.cloneElement(child, {
                 id,
-                onRef: ref => { this.formBodyComponents[id] = ref},
+                onRef: ref => {
+                    this.formBodyComponents[id] = ref
+                },
                 onChange: this._onComponentChange,
                 defaultValue,
                 schema

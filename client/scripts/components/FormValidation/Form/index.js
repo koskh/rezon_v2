@@ -33,7 +33,7 @@ class Form extends React.Component<Props> {
         const test = this.formComponents['FormBody'] && this.formComponents['FormBody'].validate();
         console.log('bodyForm.validate(): ', test);
 
-        // this.formComponents['FormBody'] && this.formComponents['FormBody'].setErrors(test);
+        this.formComponents['FormBody'] && this.formComponents['FormBody'].setErrors(test);
 
 
         // this.formComponents['FormBody'] && this.formComponents['FormBody'].isValid();

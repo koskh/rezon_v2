@@ -48,13 +48,23 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
         }
 
 
-        getControlValue(): any {
+        get componentValue(): any {
             return this.state.value;
         }
 
-        getControlState(): controlStateType {
+        get componentState(): controlStateType {
             return this.state.controlState;
         }
+
+        set componentValue(value): void {
+            this.setState(value);
+        }
+
+        set componentState(validateState: validateResultType): void {
+            this.setState({...validateState});
+        }
+
+
 
         validateInputRules(value): any {
             let val = this._getConvertedValue(value);
