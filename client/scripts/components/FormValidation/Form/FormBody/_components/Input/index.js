@@ -41,13 +41,13 @@ const defaultProps: Props = {
 };
 
 
-const Input = (props: Props) => {
+const Index = (props: Props) => {
 
     return (
         <div className="form-group row">
-            <label htmlFor={props.id} className="col-sm-4 col-form-label">Пароль</label>
+            <label htmlFor={props.id} className="col-sm-4 col-form-label">Email</label>
             <div className="col-sm-20">
-                <input type="password"
+                <input type="text"
                     className={cn('form-control', props.controlState)}
                     id={props.id}
                     placeholder={props.placeholder}
@@ -60,6 +60,6 @@ const Input = (props: Props) => {
     )
 };
 
-Input.defaultProps = defaultProps;
+Index.defaultProps = defaultProps;
 
-export default Input;
+export default Index;
