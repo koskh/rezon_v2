@@ -76,19 +76,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return this._getControlStateForLogicRules(fields);
         }
 
-        render() {
 
-            return (
-                <WrappedComponent
-                    id={this.props.id}
-                    placeholder={this.props.placeholder}
-                    defaultValue={this.props.defaultValue}
-                    controlState={this.state.controlState}
-                    controlStateMsg={this.state.controlStateMsg}
-                    onChange={this._onComponentChange}
-                />
-            );
-        }
 
         _onComponentChange = ev => {
             let value = this._getConvertedValue(ev.target.value);
@@ -139,6 +127,18 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return {controlState, controlStateMsg};
         };
 
+        render() {
+            return (
+                <WrappedComponent
+                    id={this.props.id}
+                    placeholder={this.props.placeholder}
+                    defaultValue={this.props.defaultValue}
+                    controlState={this.state.controlState}
+                    controlStateMsg={this.state.controlStateMsg}
+                    onChange={this._onComponentChange}
+                />
+            );
+        }
     }
 
 }

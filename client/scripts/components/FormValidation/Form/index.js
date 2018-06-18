@@ -20,9 +20,10 @@ class Form extends React.Component<Props> {
     };
 
     _onFormBodyChange = (formBodyComponent: any) =>{
-        // const isFormValid = formBodyComponent.isFormValid();
+        const isBodyValid = formBodyComponent.isValid();
+        this._toggleOkBtn(isBodyValid);
 
-        // console.log('isFormValid:', isFormValid)
+        console.log('isFormValid:', isBodyValid)
     };
 
     // _onFormFooterChange = () =>{
@@ -42,8 +43,13 @@ class Form extends React.Component<Props> {
     };
 
     _onCancelClick = () => {
-        debugger;
+        // debugger;
     };
+
+    _toggleOkBtn(isOkEnabled: boolean){
+        this.formComponents['FormFooter'] && this.formComponents['FormFooter'].toggleOkBtn(isOkEnabled)
+    }
+
 
     render() {
         return (

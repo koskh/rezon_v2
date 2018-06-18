@@ -83,14 +83,6 @@ class FormBody extends React.Component<propsType> {
 
     };
 
-    render() {
-        return (
-            <div className={styles.FormBody}>
-                {this._renderChildren(this.props)}
-            </div>
-        );
-    }
-
     _onComponentChange = () => {
         this.props.onChange && this.props.onChange(this);
     };
@@ -112,6 +104,14 @@ class FormBody extends React.Component<propsType> {
             });
         });
     };
+
+    render() {
+        return (
+            <div className={styles.FormBody}>
+                {this._renderChildren(this.props)}
+            </div>
+        );
+    }
 
 }
 

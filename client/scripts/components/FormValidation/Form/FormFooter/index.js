@@ -5,14 +5,41 @@ import * as React from 'react';
 import styles from './index.pcss';
 
 
-type Props = {
-    children?: React.Node,
+type propsType = {
+    isOkDefaultisEnabled?: boolean,
     onOkClick?: Function,
     onCancelClick?: Function,
+    onRef?: Function,
+    children?: React.Node,
 }
 
-class FormFooter extends React.Component<Props> {
-    props: Props;
+type stateType =
+{
+    isOkEnabled: boolean
+}
+
+class FormFooter extends React.Component<propsType, stateType> {
+    props: propsType;
+
+    static defaultProps: propsType = {
+        onChange: x => x
+    };
+
+    state: stateType = {
+        isOkEnabled: this.props.isOkDefaultisEnabled || false
+    };
+
+    componentDidMount() {
+        this.props.onRef && this.props.onRef(this)
+    }
+
+    componentWillUnmount() {
+        this.props.onRef && this.props.onRef(undefined)
+    }
+
+    toggleOkBtn(isOkEnabled?: boolean) {
+        this.setState({isOkEnabled: (isOkEnabled === undefined ? !this.state.isOkEnabled : isOkEnabled)});
+    }
 
     _onOkClick = (e: any) => {
         e.stopPropagation();
@@ -32,8 +59,8 @@ class FormFooter extends React.Component<Props> {
         return (
             <div className={styles.FormFooter}>
                 {this.props.children}
-                <button onClick={this._onOkClick}> OK </button>
-                <button onClick={this._onCancelClick}> Cancel </button>
+                <button onClick={this._onOkClick} disabled={!this.state.isOkEnabled}> OK</button>
+                <button onClick={this._onCancelClick}> Cancel</button>
             </div>
         );
     }
