@@ -72,7 +72,7 @@ export default () => {
             <Password id={'password'} placeholder={'Пароль'}/>
         </FormBody>
 
-        <FormFooter isOkDefaultisEnabled={false} />
+        <FormFooter isOkDefaultEnabled={false} />
 
 
     </Form>

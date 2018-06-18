@@ -80,9 +80,13 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
 
         _onComponentChange = ev => {
             let value = this._getConvertedValue(ev.target.value);
-            let {controlState, controlStateMsg} = this._getControlStateForInputRules(value);
+            // let {controlState, controlStateMsg} = this._getControlStateForInputRules(value);
+            // this.setState(
+            //     {value, controlState, controlStateMsg},
+            //     () => this.props.onChange && this.props.onChange(this)
+            // );
             this.setState(
-                {value, controlState, controlStateMsg},
+                {value},
                 () => this.props.onChange && this.props.onChange(this)
             );
 

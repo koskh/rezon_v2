@@ -6,7 +6,7 @@ import styles from './index.pcss';
 
 
 type propsType = {
-    isOkDefaultisEnabled?: boolean,
+    isOkDefaultEnabled?: boolean,
     onOkClick?: Function,
     onCancelClick?: Function,
     onRef?: Function,
@@ -26,7 +26,7 @@ class FormFooter extends React.Component<propsType, stateType> {
     };
 
     state: stateType = {
-        isOkEnabled: this.props.isOkDefaultisEnabled || false
+        isOkEnabled: this.props.isOkDefaultEnabled || false
     };
 
     componentDidMount() {

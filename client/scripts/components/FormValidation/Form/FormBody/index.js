@@ -52,7 +52,7 @@ class FormBody extends React.Component<propsType> {
         });
 
         if (isInputValid) {
-            let fields = this.getFormBodyValue();
+            let fields = this.getFormBodyValues();
             _.each(this.formBodyComponents, (v, k) => { //валидац логических значений
                 resultValidate[k] = v.validateLogicRules(fields);
             });
@@ -61,13 +61,13 @@ class FormBody extends React.Component<propsType> {
         return resultValidate;
     };
 
-    isValid(): boolean {
-        let resultValidate = this.validate();
+    isValid(resultValidate?: validateResultsType): boolean {
+        resultValidate === undefined? this.validate() : resultValidate;
         let isFinded = _.filter(resultValidate, {controlState: 'is-invalid'});
         return isFinded.length === 0;
     }
 
-    getFormBodyValue = () => {
+    getFormBodyValues = () => {
         let fields = {};
         _.each(this.formBodyComponents, (v, k) => {
             fields[k] = v.componentValue;
@@ -84,7 +84,12 @@ class FormBody extends React.Component<propsType> {
     };
 
     _onComponentChange = () => {
-        this.props.onChange && this.props.onChange(this);
+        let resultValidate =  this.validate();
+        let isValid = this.isValid(resultValidate);
+
+        this.setErrors(resultValidate);
+
+        this.props.onChange && this.props.onChange({isValid});
     };
 
     _renderChildren = (props: any) => {
