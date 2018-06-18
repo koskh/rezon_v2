@@ -56,7 +56,8 @@ class Password extends React.Component<propsType, stateType> {
                 <label htmlFor={id} className="col-sm-4 col-form-label">Пароль
                 </label>
                 <div className="col-sm-20">
-                    <input type="password"
+                    <input
+                        type={isOpen? 'text': 'password'}
                         className={cn('form-control', controlState)}
                         id={id}
                         placeholder={placeholder}

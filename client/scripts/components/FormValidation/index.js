@@ -53,11 +53,11 @@ const schema = {
         logicRules:[
             {
                 validate: fields => {
-                    const {email, email2} = fields;
+                    const {email, password} = fields;
 
-                    return email.length >= email2.length
+                    return email.length >= password.length
                 },
-                msg: 'email.length должна быть >= чем email2.length'
+                msg: 'email.length должна быть >= чем password.length'
             },
         ]
     }
