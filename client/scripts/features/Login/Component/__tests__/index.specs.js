@@ -3,7 +3,7 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Login from '../';
+import Login from '../.';
 
 describe('features/Login', () => {
 

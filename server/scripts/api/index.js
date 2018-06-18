@@ -14,6 +14,12 @@ api.get('/', (req: express$Request, res: express$Response) => {
     res.send('Default response for GET /api\n');
 });
 
+api.post('token', (req: express$Request, res: express$Response)=>{
+    setTimeout(() => {
+        res.json({data: {}, error:{}});
+    }, 2000);
+})
+
 api.use('/references', references);
 api.use('/random', random);
 

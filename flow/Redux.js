@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 declare type ReduxAction = {type: string, payload: any};
-// declare type ThunkAction= (...args: Array<any>)=>State;
+declare type ThunkAction= (...args: Array<any>)=>State;
 declare type ReducerAction = (state: State, action: {type: string, payload: any}) => State; // действ редюсера
 declare type ReducerActions = {[handler: string]: ReducerAction};
 //

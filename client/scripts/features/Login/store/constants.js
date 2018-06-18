@@ -1,0 +1,7 @@
+// @flow
+export const FETCH_REQUEST: string = 'LOGIN_COMPONENT/FETCH_REQUEST';
+export const FETCH_SUCCESS: string = 'LOGIN_COMPONENT/FETCH_SUCCESS';
+export const FETCH_FAILURE: string = 'LOGIN_COMPONENT/FETCH_FAILURE';
+export const FETCH_CANCEL: string = 'LOGIN_COMPONENT/FETCH_CANCEL';
+
+export const RESET: string = 'LOGIN_COMPONENT/RESET';

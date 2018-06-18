@@ -1,19 +1,13 @@
 // @flow
+import { connect } from 'react-redux';
 
-import * as React from 'react';
+import { makeFetch, cancelFetch} from './store/actions/fetch';
 
-import Login from '../../components/Login';
 
-export default class extends React.Component<*> {
-    componentWillMount() {
-        document.title = 'Login page';
-    }
+import Component from './Component';
 
-    render() {
-        return (
-            <article>
-                <Login/>
-            </article>
-        );
-    }
+function mapStateToProps(state: State) {
+    return state;
 }
+
+export default connect(mapStateToProps, { makeFetch, cancelFetch})(Component);

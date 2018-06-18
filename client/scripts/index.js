@@ -20,6 +20,8 @@ import {BrowserRouter as Router, Switch} from "react-router-dom";
 import {OpenRoute, PrivateRoute} from './services/route'
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+
 import {Provider} from 'react-redux';
 import Reducers from './services/storage/reducers';
 
@@ -32,13 +34,14 @@ const store = createStore(
         ...Reducers
     }),
     preloadedState,
+    applyMiddleware(thunkMiddleware)
 );
 
 import Navigate from './components/Navigate';
 
 // open pages
 import NotFound from './features/NotFound';
-import Login from './features/Login';
+import Login from './features/Login/index';
 import About from './features/About';
 // private pages
 import Home from './features/Home';

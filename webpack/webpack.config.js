@@ -42,7 +42,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: 'babel-loader'
             },
-    //
+            //
             {
                 test: /\.json$/,
                 use: 'json-loader'
@@ -52,7 +52,7 @@ module.exports = {
                 test: /\.txt$/,
                 use: 'raw-loader'
             },
-    //
+            //
             {
                 test: /\.png$/,
                 use:'file-loader'
@@ -72,7 +72,7 @@ module.exports = {
                             // minimize: true
                         }
                     },
-                        'postcss-loader'
+                    'postcss-loader'
                     ]
                 })
             },
@@ -88,7 +88,7 @@ module.exports = {
                             importLoaders: 1,
                         }
                     },
-                        'postcss-loader'
+                    'postcss-loader'
                     ]
                 })
             },
@@ -96,6 +96,10 @@ module.exports = {
     },
     //
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            PROJECT_ENV: JSON.stringify('development')
+        }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../client/html', 'index.html'),
             favicon: path.join(__dirname, '../client/media', 'favicon.ico'),

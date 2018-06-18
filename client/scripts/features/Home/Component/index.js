@@ -5,9 +5,8 @@ import {FormattedMessage, FormattedDate, FormattedNumber} from 'react-intl';
 
 import i18n from '../../../../i18n';
 
-import TestForm from '../../../components/FormValidation';
 
-export default class extends React.Component<*> {
+export default class FeatureHome extends React.Component<*> {
     componentWillMount() {
         document.title = 'Home page';
     }
@@ -48,9 +47,6 @@ export default class extends React.Component<*> {
                     />
                 </p>
 
-                <div>
-                    <TestForm/>
-                </div>
             </div>
         );
     }
