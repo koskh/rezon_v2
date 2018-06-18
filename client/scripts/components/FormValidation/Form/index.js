@@ -29,7 +29,10 @@ class Form extends React.Component<Props> {
     // };
 
     _onOkClick = () => {
-        console.log('getFormBodyValues ', this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues()) ;
+        const bodyValues = this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues()
+        console.log('getFormBodyValues ', bodyValues) ;
+
+
 
     };
 
