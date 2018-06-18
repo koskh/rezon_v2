@@ -21,18 +21,6 @@ class Form extends React.Component<Props> {
 
     _onFormBodyChange = (opt: {isValid: boolean}) => {
         const {isValid} = opt;
-
-        // if (!this.formComponents['FormBody'])
-        //     return;
-        //
-        // const test = this.formComponents['FormBody'].validate();
-        // console.log('bodyForm.validate(): ', test);
-        //
-        // this.formComponents['FormBody'].setErrors(test);
-        //
-        // const isBodyValid = this.formComponents['FormBody'].isValid(test);
-        // console.log('isFormValid:', isBodyValid);
-
         this._toggleOkBtn(isValid);
     };
 
@@ -41,13 +29,6 @@ class Form extends React.Component<Props> {
     // };
 
     _onOkClick = () => {
-        // const test = this.formComponents['FormBody'] && this.formComponents['FormBody'].validate();
-        // console.log('bodyForm.validate(): ', test);
-        //
-        // this.formComponents['FormBody'] && this.formComponents['FormBody'].setErrors(test);
-
-
-        // this.formComponents['FormBody'] && this.formComponents['FormBody'].isValid();
         console.log('getFormBodyValues ', this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues()) ;
 
     };

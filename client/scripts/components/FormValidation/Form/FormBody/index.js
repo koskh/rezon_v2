@@ -84,12 +84,29 @@ class FormBody extends React.Component<propsType> {
     };
 
     _onComponentChange = () => {
+        if(!this._isAllFieldsHasInput()) //ожидаем, что все поля "изменялись"
+            return;
+
         let resultValidate =  this.validate();
         let isValid = this.isValid(resultValidate);
 
         this.setErrors(resultValidate);
 
         this.props.onChange && this.props.onChange({isValid});
+    };
+
+    _isAllFieldsHasInput = (): boolean => {
+        let allFieldsHasInput = true;
+
+        _.each(this.formBodyComponents, v => { //валидац введенных значений
+            if (v.componentValue === undefined){
+                allFieldsHasInput = false;
+                return false;
+            }
+
+        });
+
+        return allFieldsHasInput
     };
 
     _renderChildren = (props: any) => {
