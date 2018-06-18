@@ -30,7 +30,7 @@ class Form extends React.Component<Props> {
     // };
 
     _onOkClick = () => {
-        // this.formComponents['FormBody'] && this.formComponents['FormBody'].validate();
+        console.log('bodyForm.validate(): ', this.formComponents['FormBody'] && this.formComponents['FormBody'].validate());
         // this.formComponents['FormBody'] && this.formComponents['FormBody'].isValid();
         console.log('getFormBodyValue ', this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValue()) ;
 
@@ -42,7 +42,7 @@ class Form extends React.Component<Props> {
 
     render() {
         return (
-            <form className={styles.form}>
+            <form className={styles.form}  autoComplete="off">
                 {React.Children.map(this.props.children, child => {
                     const childName = child.type.name;
 

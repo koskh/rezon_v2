@@ -5,6 +5,7 @@ import * as React from 'react';
 // import styles from './index.pcss';
 
 import BasedInput from './Input';
+import BasedPassword from './Password';
 
 import type {componentSchemaType} from "../../../Validation/schema";
 
@@ -13,6 +14,7 @@ type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid'
 
 type propsType = {
     id?: string,
+    placeholder?: string,
     onRef?: Function,
     defaultValue?: any,
     onChange?: Function,
@@ -32,20 +34,54 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
 
         static defaultProps: propsType = {
             id: '',
-            onChange: v=>v
+            onChange: v => v
         };
 
         state: stateType = {
             value: this.props.defaultValue,
-            controlState:  _.get(this.props, 'schema.hint.msg') && 'is-hint' || '',
+            controlState: _.get(this.props, 'schema.hint.msg') && 'is-hint' || '',
             controlStateMsg: _.get(this.props, 'schema.hint.msg') || ''
         };
 
         componentDidMount() {
             this.props.onRef && this.props.onRef(this)
         }
+
         componentWillUnmount() {
             this.props.onRef && this.props.onRef(undefined)
+        }
+
+
+        getControlValue(): any {
+            return this.state.value;
+        }
+
+        getControlState(): controlStateType {
+            return this.state.controlState;
+        }
+
+        validateInputRules(value): any {
+            let val = this._getConvertedValue(value);
+            return this._getControlStateForInputRules(val);
+
+        }
+
+        validateLogicRules(fields: any): any {
+            return this._getControlStateForLogicRules(fields);
+        }
+
+        render() {
+
+            return (
+                <WrappedComponent
+                    id={this.props.id}
+                    placeholder={this.props.placeholder}
+                    defaultValue={this.props.defaultValue}
+                    controlState={this.state.controlState}
+                    controlStateMsg={this.state.controlStateMsg}
+                    onChange={this._onComponentChange}
+                />
+            );
         }
 
         _onComponentChange = ev => {
@@ -58,34 +94,12 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
 
         };
 
-        getControlValue(): any{
-            return this.state.value;
-        }
-
-        getControlState(): controlStateType {
-            return this.state.controlState;
-        }
-
-        validateInputRules(value): any {
-            let val = this._getConvertedValue(value);
-            let {controlState, controlStateMsg} = this._getControlStateForInputRules(val);
-            this.setState({controlState, controlStateMsg});
-            return {controlState, controlStateMsg};
-        }
-
-        validateLogicRules(fields: any): any {
-            let {controlState, controlStateMsg} = this._getControlStateForLogicRules(fields);
-            this.setState({controlState, controlStateMsg});
-            return {controlState, controlStateMsg};
-        }
-
-
         _getConvertedValue = (val: any): any => {
             const converter = _.get(this.props, 'schema.convert.action');
             return converter ? converter(val) : val;
         };
 
-        _getControlStateForInputRules = (val: any): {controlState: controlStateType, controlStateMsg: string} => {
+        _getControlStateForInputRules = (val: any): { controlState: controlStateType, controlStateMsg: string } => {
             const inputRules = _.get(this.props, 'schema.inputRules');
 
             let controlState = _.get(this.props, 'schema.isValid.msg') && 'is-valid' || _.get(this.props, 'schema.hint.msg') && 'is-hint' || '';
@@ -102,7 +116,7 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return {controlState, controlStateMsg};
         };
 
-        _getControlStateForLogicRules = (fields: any): {controlState: controlStateType, controlStateMsg: string} => {
+        _getControlStateForLogicRules = (fields: any): { controlState: controlStateType, controlStateMsg: string } => {
             const logicRules = _.get(this.props, 'schema.logicRules');
 
             let controlState = _.get(this.props, 'schema.isValid.msg') && 'is-valid' || _.get(this.props, 'schema.hint.msg') && 'is-hint' || '';
@@ -119,21 +133,10 @@ function getWrappedFormBodyComponent(WrappedComponent: any): React.Element {
             return {controlState, controlStateMsg};
         };
 
-        render() {
-
-            return (
-                <WrappedComponent
-                    id={this.props.id}
-                    defaultValue={this.state.value}
-                    controlState={this.state.controlState}
-                    controlStateMsg={this.state.controlStateMsg}
-                    onChange={this._onComponentChange}
-                />
-            );
-        }
     }
 
 }
 
 
 export const Input = getWrappedFormBodyComponent(BasedInput);
+export const Password = getWrappedFormBodyComponent(BasedPassword);

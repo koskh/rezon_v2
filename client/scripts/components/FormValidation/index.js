@@ -8,7 +8,7 @@ import Form from './Form';
 // import DefaultFormHeader from './Form/FormHeader';
 
 import FormBody from './Form/FormBody';
-import {Input} from './Form/FormBody/_components'
+import {Input, Password} from './Form/FormBody/_components'
 
 import FormFooter from './Form/FormFooter';
 
@@ -32,13 +32,13 @@ const schema = {
             }
         ]
     },
-    email2: {
+    password: {
         convert: {
             action: value => _.toString(value),
             msg: 'Не могу сконвертить'
         },
         hint: {
-            msg: 'Hint tolltip for everyone'
+            msg: 'Пароль для входа'
         },
         inputRules: [
             {
@@ -68,8 +68,8 @@ export default () => {
     return <Form>
 
         <FormBody formSchema={schema}>
-            <Input id={'email'} defaultValue={'1234567'}/>
-            <Input id={'email2'}/>
+            <Input id={'email'} placeholder={'Логин'}/>
+            <Password id={'password'} placeholder={'Пароль'}/>
         </FormBody>
 
         <FormFooter>

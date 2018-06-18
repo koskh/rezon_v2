@@ -45,9 +45,9 @@ const Input = (props: Props) => {
 
     return (
         <div className="form-group row">
-            <label htmlFor={props.id} className="col-sm-4 col-form-label">Email</label>
+            <label htmlFor={props.id} className="col-sm-4 col-form-label">Пароль</label>
             <div className="col-sm-20">
-                <input type="text"
+                <input type="password"
                     className={cn('form-control', props.controlState)}
                     id={props.id}
                     placeholder={props.placeholder}

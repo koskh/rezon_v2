@@ -41,32 +41,6 @@ class FormBody extends React.Component<propsType> {
         this.props.onRef && this.props.onRef(undefined)
     }
 
-    _renderChildren = (props: any) => {
-        return React.Children.map(props.children, child => {
-            const id = child.props.id || _.uniqueId('frm-cmp-vld_');
-            const defaultValue = child.props.defaultValue;
-            const schema = child.props.schema || _.get(this.props, 'formSchema')[id];
-
-            return  React.cloneElement(child, {
-                id,
-                onRef: ref => { this.formBodyComponents[id] = ref},
-                onChange: this._onComponentChange,
-                defaultValue,
-                schema
-            });
-        });
-    };
-
-    _onComponentChange = () => {
-        this.props.onChange && this.props.onChange(this);
-    };
-
-
-    isValid(): boolean {
-        let resultValidate = this.validate();
-        let isFinded = _.filter(resultValidate, {controlState:'is-invalid'});
-        return isFinded.length === 0;
-    }
 
     validate = () => {
         let resultValidate = {};
@@ -81,7 +55,6 @@ class FormBody extends React.Component<propsType> {
 
         if(isInputValid) {
             let fields = this.getFormBodyValue();
-
             _.each(this.formBodyComponents, (v,k) => { //валидац логических значений
                 resultValidate[k] = v.validateLogicRules(fields);
             });
@@ -89,6 +62,12 @@ class FormBody extends React.Component<propsType> {
 
         return resultValidate;
     };
+
+    isValid(): boolean {
+        let resultValidate = this.validate();
+        let isFinded = _.filter(resultValidate, {controlState: 'is-invalid'});
+        return isFinded.length === 0;
+    }
 
     getFormBodyValue = () => {
         let fields = {};
@@ -106,6 +85,26 @@ class FormBody extends React.Component<propsType> {
             </div>
         );
     }
+    _onComponentChange = () => {
+        this.props.onChange && this.props.onChange(this);
+    };
+
+    _renderChildren = (props: any) => {
+        return React.Children.map(props.children, child => {
+            const id = child.props.id || _.uniqueId('frm-cmp-vld_');
+            const defaultValue = child.props.defaultValue;
+            const schema = child.props.schema || _.get(this.props, 'formSchema')[id];
+
+            return  React.cloneElement(child, {
+                id,
+                onRef: ref => { this.formBodyComponents[id] = ref},
+                onChange: this._onComponentChange,
+                defaultValue,
+                schema
+            });
+        });
+    };
+
 }
 
 export default FormBody;
