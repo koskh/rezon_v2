@@ -67,7 +67,7 @@ class FormBody extends React.Component<propsType> {
         return isFinded.length === 0;
     }
 
-    getFormBodyValues = () => {
+    getFormBodyValues = (): bodyValuesType => {
         let fields = {};
         _.each(this.formBodyComponents, (v, k) => {
             fields[k] = v.componentValue;

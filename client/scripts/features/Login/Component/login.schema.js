@@ -12,10 +12,10 @@ export default {
                 validate: value => value.length > 0,
                 msg: 'Не может быть пустым'
             },
-            {
-                validate: value => value.length <= 5,
-                msg: 'Не может быть больше 5 символов'
-            }
+            // {
+            //     validate: value => value.length <= 5,
+            //     msg: 'Не может быть больше 5 символов'
+            // }
         ]
     },
     password: {
@@ -31,20 +31,20 @@ export default {
                 validate: value => value.length > 0,
                 msg: 'Не может быть пустым'
             },
-            {
-                validate: value => value.length <= 5,
-                msg: 'Не может быть больше 5 символов'
-            }
+            // {
+            //     validate: value => value.length <= 5,
+            //     msg: 'Не может быть больше 5 символов'
+            // }
         ],
         logicRules:[
-            {
-                validate: fields => {
-                    const {email, password} = fields;
-
-                    return email.length >= password.length
-                },
-                msg: 'email.length должна быть >= чем password.length'
-            },
+            // {
+            //     validate: fields => {
+            //         const {email, password} = fields;
+            //
+            //         return email.length >= password.length
+            //     },
+            //     msg: 'email.length должна быть >= чем password.length'
+            // },
         ]
     }
 }

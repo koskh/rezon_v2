@@ -39,7 +39,7 @@ class Form extends React.Component<propsType> {
         const bodyValues = this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues();
         console.log('getFormBodyValues ', bodyValues) ;
 
-        this.props.makeFetch && this.props.makeFetch();
+        this.props.makeFetch && this.props.makeFetch(bodyValues);
     };
 
     _onCancelClick = () => {

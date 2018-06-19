@@ -2,6 +2,7 @@
 declare type controlStateType = '' | 'is-hint' | 'is-valid' | 'is-invalid' // состояние контрола формы
 declare type validateResultType = { controlState: controlStateType, controlStateMsg: string } //результат валиации контрола
 declare type validateResultsType = {[field: string]: validateResultType}; // резултаты валидации всех полей формы
+declare type bodyValuesType = {[field: string]: any}; // результаты валидации всех полей формы
 
 declare type componentSchemaType = {
     convert?: { // приведение получаемого "значения виджета" к требуемому типу

@@ -3,9 +3,10 @@ import invariant from 'invariant';
 import config from '../../../config';
 
 const apiPatch: string = `${config.serverApi}/api`;
+const tokenServer: string = `${config.tokenServer}`;
 
 const urls: {[key: string]: Function} = {
-    'token': () => `${apiPatch}/token`,
+    'token': () => `${tokenServer}/Token`,
     // 'auth/login': () => `${apiPatch}/auth/login`,
 };
 

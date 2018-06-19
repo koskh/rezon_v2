@@ -1,4 +1,5 @@
 {
-    "serverApi": "http://localhost:3001"
+    "serverApi": "http://localhost:3001",
+    "tokenServer": "http://dev30z1.o3.ru:8085/AuthServer"
 }
 
