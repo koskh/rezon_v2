@@ -33,7 +33,7 @@ export const common: {[string]: ApiRequest} = {
 };
 
 export const user: {[string]: ApiRequest} = {
-    token: () => createAjaxRequest('token')(),
+    token: options => createAjaxRequest('token')(options),
 };
 
 // export const bd: {[string]: ApiRequest} = {
