@@ -8,6 +8,7 @@ const http = axios.create({
         'X-Requested-With': 'XMLHttpRequest',
         'Cache-control': 'no-cache',
         'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
+        'Authorization': 'Bearer',
         Pragma: 'no-cache'
     },
     timeout: 60000,
