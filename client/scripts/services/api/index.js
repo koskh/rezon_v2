@@ -8,7 +8,6 @@ const http = axios.create({
         'X-Requested-With': 'XMLHttpRequest',
         'Cache-control': 'no-cache',
         'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
-        'Authorization': 'Bearer',
         Pragma: 'no-cache'
     },
     timeout: 60000,
@@ -35,6 +34,7 @@ export const common: {[string]: ApiRequest} = {
 
 export const user: {[string]: ApiRequest} = {
     token: options => createAjaxRequest('token')(options),
+    info: options => createAjaxRequest('userinfo')(options),
 };
 
 // export const bd: {[string]: ApiRequest} = {

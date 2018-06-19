@@ -33,6 +33,40 @@ api.post('/token', (req: express$Request, res: express$Response) => {
     // res.send('token response for GET /api\n');
 })
 
+api.get('/account/userinfo', (req: express$Request, res: express$Response) => {
+    setTimeout(() => {
+        res.json({
+            data: {
+                "id": 8826050370000,
+                "personId": 1929087544000,
+                "email": "admin@livelib.ru",
+                "name": "ООО Живая Библиотека",
+                "fullName": "ООО Живая Библиотека",
+                "passwordChangeRequired": false,
+                "legalForm": "legalEntity",
+                "hasActualContract": true,
+                "canRegisterPartnerIds": false,
+                "isCommercial": true,
+                "needWizard": false,
+                "canRequestContract": true,
+                "balance": {
+                    "withdraw": 1609167.9500,
+                    "sum": -1003579.8900
+                },
+                "contract": {
+                    "id": 3070030430000,
+                    "name": "ИР-У 210/13 от 01.08.2013",
+                    "stateName": "Действует",
+                    "stateSysName": "Actual"
+                }
+
+            }, error: {}
+        });
+    }, 2000);
+
+    // res.send('token response for GET /api\n');
+})
+
 api.use('/references', references);
 api.use('/random', random);
 

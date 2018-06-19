@@ -6,7 +6,8 @@ const apiPatch: string = `${config.serverApi}/api`;
 const tokenServer: string = `${config.tokenServer}`;
 
 const urls: {[key: string]: Function} = {
-    'token': () => `${tokenServer}/Token`,
+    'token': () => `${tokenServer}/api/Token`,
+    'userinfo': () => `${apiPatch}/account/userinfo`,
     // 'auth/login': () => `${apiPatch}/auth/login`,
 };
 

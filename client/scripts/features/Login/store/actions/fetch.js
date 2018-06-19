@@ -1,5 +1,6 @@
 // @flow
 import _ from 'lodash';
+import axios from 'axios';
 import serialize from '../../../../services/utils/serialize';
 
 import {FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE, FETCH_CANCEL} from '../constants';
@@ -38,7 +39,13 @@ export function makeFetch(opt: bodyValuesType): Function {
 
             const response = await request.promise;
 
-            // debugger;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+
+            const userInfo =  user.info();
+            Requests.push(request);
+            const userInfoResponse = await userInfo.promise;
+
+            debugger;
 
             dispatch(success({data: response.data.data}));
         } catch (error) {
