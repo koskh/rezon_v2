@@ -4,12 +4,19 @@
 import * as React from 'react';
 import styles from './index.pcss';
 
-type Props = {
+type propsType = {
+    makeFetch?: Function,
+    cancelFetch?: Function,
     children?: React.Node
 }
 
-class Form extends React.Component<Props> {
-    props: Props;
+class Form extends React.Component<propsType> {
+    props: propsType;
+
+    static defaultProps: propsType = {
+        makeFetch: x => x,
+        cancelFetch: x => x
+    };
 
     formComponents: any = {}; // рнфа на компоненты формы
 
@@ -29,15 +36,14 @@ class Form extends React.Component<Props> {
     // };
 
     _onOkClick = () => {
-        const bodyValues = this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues()
+        const bodyValues = this.formComponents['FormBody'] && this.formComponents['FormBody'].getFormBodyValues();
         console.log('getFormBodyValues ', bodyValues) ;
 
-
-
+        this.props.makeFetch && this.props.makeFetch();
     };
 
     _onCancelClick = () => {
-        // debugger;
+        this.props.cancelFetch && this.props.cancelFetch();
     };
 
     _toggleOkBtn(isOkEnabled: boolean){

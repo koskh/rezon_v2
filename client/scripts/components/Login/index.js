@@ -11,8 +11,6 @@ import FormWelcome from './FormWelcome';
 import OtherServicesLogin from './OtherServicesLogin';
 import EmailPassword from './EmailPassword';
 
-import TestLoginForm from '../FormValidation/index'
-
 type Props = {
     // title: string
 }
@@ -41,10 +39,6 @@ export default class LoginForm extends React.Component<Props> {
 
                     </div>
 
-                </div>
-
-                <div className='row col-24 mt-4'>
-                    <TestLoginForm />
                 </div>
 
 

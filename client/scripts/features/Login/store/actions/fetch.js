@@ -19,17 +19,17 @@ export function makeFetch(): Function {
         dispatch(request({ error: null }));
         //
         try {
-            const request = user.token({userId: 'user123', method: 'post', data: { userId: 'user123' }});
+            const request = user.token({method: 'post', data: { userId: 'user123' }});
             Requests.push(request);
 
             const response = await request.promise;
 
-            debugger;
+            // debugger;
 
             dispatch(success({ data: response.data.data }));
         } catch (error) {
 
-            debugger;
+            // debugger;
 
             dispatch(failure({ error }));
         }
