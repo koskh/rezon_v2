@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import Login from '../../../components/Login/index';
+// import Login from '../../../components/Login/index';
 
 import Form from '../../../components/FormValidation/Form';
 import FormBody from '../../../components/FormValidation/Form/FormBody';
@@ -27,7 +27,6 @@ export default class FeatureLogin extends React.Component<*> {
     render() {
         return (
             <article>
-                <Login/>
 
                 <div className='row col-24 mt-4'>
 

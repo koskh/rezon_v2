@@ -1,6 +1,6 @@
 // @flow
 import axios from 'axios';
-import interceptors from './interceptors';
+import { requestsConfigHandler, responseErrorHandler} from './interceptors';
 import urls from './urls';
 
 const http = axios.create({
@@ -14,8 +14,8 @@ const http = axios.create({
     withCredentials: true
 });
 
-// http.interceptors.request.use(undefined, interceptors.before);
-http.interceptors.response.use(undefined, interceptors.failure);
+http.interceptors.request.use(requestsConfigHandler, error => Promise.reject(error));
+http.interceptors.response.use(response => response, responseErrorHandler);
 
 const createAjaxRequest = (url: string, ...args0: Array<any>): Function => ({ ...args1 }: Object): AjaxRequest => {
     const CancelToken = axios.CancelToken;

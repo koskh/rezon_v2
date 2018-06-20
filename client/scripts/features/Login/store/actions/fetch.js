@@ -8,12 +8,12 @@ import {createAction} from '../../../../services/storage/utilities';
 
 import {user} from '../../../../services/api/index';
 
-
-
 export const request: ThunkAction = createAction(FETCH_REQUEST);
 export const success: ThunkAction = createAction(FETCH_SUCCESS);
 export const failure: ThunkAction = createAction(FETCH_FAILURE);
 export const cancel: ThunkAction = createAction(FETCH_CANCEL);
+
+import {authSet} from '../../../../services/auth/store/actions'
 
 
 const Requests: Array<AjaxRequest> = [];
@@ -39,13 +39,17 @@ export function makeFetch(opt: bodyValuesType): Function {
 
             const response = await request.promise;
 
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+            dispatch(authSet({
+                access_token: response.data.data.access_token,
+                refresh_token: response.data.data.refresh_token,
+            }));
+
 
             const userInfo =  user.info();
             Requests.push(request);
             const userInfoResponse = await userInfo.promise;
 
-            debugger;
+            // debugger;
 
             dispatch(success({data: response.data.data}));
         } catch (error) {

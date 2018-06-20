@@ -19,23 +19,25 @@ const messages =  i18n.getMessages(locale);
 import {BrowserRouter as Router, Switch} from "react-router-dom";
 import {OpenRoute, PrivateRoute} from './services/route'
 
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import thunkMiddleware from 'redux-thunk';
+// import {createStore, combineReducers, applyMiddleware} from 'redux';
+// import thunkMiddleware from 'redux-thunk';
 
 import {Provider} from 'react-redux';
-import Reducers from './services/storage/reducers';
+import store from './services/storage/store';
 
-// eslint-disable-next-line
-const preloadedState = process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || {} : {};
+// import Reducers from './services/storage/reducers';
+
+// // eslint-disable-next-line
+// const preloadedState = process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || {} : {};
 
 //
-const store = createStore(
-    combineReducers({
-        ...Reducers
-    }),
-    preloadedState,
-    applyMiddleware(thunkMiddleware)
-);
+// const store = createStore(
+//     combineReducers({
+//         ...Reducers
+//     }),
+//     preloadedState,
+//     applyMiddleware(thunkMiddleware)
+// );
 
 import Navigate from './components/Navigate';
 

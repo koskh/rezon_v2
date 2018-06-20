@@ -1,3 +1,5 @@
+import store from '../storage/store';
+
 // import history from 'history';
 // import errors from '../constants/errors';
 // import getErrorType from '../utilities/get-error-type';
@@ -20,34 +22,48 @@ const statuses = {
     badGateway: 503
 };
 
-export default {
-    failure(error) {
-        if (error.response) {
-            // if (error.response.status === statuses.notFound)
-            // history.push('/');
+// export default {
+export const responseErrorHandler = error => {
+    // debugger;
+    
+    // if (error.response) {
+    // if (error.response.status === statuses.notFound)
+    // history.push('/');
 
-            // if (error.response.status === statuses.unauthorized)
-            // history.push(`/login?return=${window.location.pathname}`);
+    // if (error.response.status === statuses.unauthorized)
+    // history.push(`/login?return=${window.location.pathname}`);
 
-            // if (error.response.status === statuses.badRequest)
-            //     history.push(`/login?return=${window.location.pathname}`);
+    // if (error.response.status === statuses.badRequest)
+    //     history.push(`/login?return=${window.location.pathname}`);
 
-        //
-        //     let name = error.response.statusText;
-        //
-        //     if (error.message === 'Network Error') {
-        //         name = error.message;
-        //     }
-        //
-        //     const type = getErrorType(name);
-        //     const message = error.response.data;
-        //
-        //     return Promise.reject({ name, type, message: message.length ? message : (errorMessages[type] || '') });
-        }
+    //
+    //     let name = error.response.statusText;
+    //
+    //     if (error.message === 'Network Error') {
+    //         name = error.message;
+    //     }
+    //
+    //     const type = getErrorType(name);
+    //     const message = error.response.data;
+    //
+    //     return Promise.reject({ name, type, message: message.length ? message : (errorMessages[type] || '') });
+    // }
 
-        return Promise.reject(error);
-    }
+    return Promise.reject(error);
+};
+// };
+
+export const requestsConfigHandler = config => {
+    const {type_token, access_token} =  store.getState().auth;
+    // debugger;
+    config.headers.common['Authorization'] = `${type_token} ${access_token}`;
+
+    return config;
 };
 
+// const requestsErrorHandler = (error) => {
+//
+// };
 
-// export default { requests, response};
+
+// export default { requestsConfigHandler, responseErrorHandler};
