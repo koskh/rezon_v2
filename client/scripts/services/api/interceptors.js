@@ -54,9 +54,8 @@ export const responseErrorHandler = error => {
 // };
 
 export const requestsConfigHandler = config => {
-    const {type_token, access_token} =  store.getState().auth;
-    // debugger;
-    config.headers.common['Authorization'] = `${type_token} ${access_token}`;
+    const {token_type, access_token} =  store.getState().auth;
+    config.headers.common['Authorization'] = `${token_type} ${access_token}`;
 
     return config;
 };

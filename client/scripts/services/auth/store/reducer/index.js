@@ -5,7 +5,7 @@ import { createReducer, nextState } from '../../../../services/storage/utilities
 const initialState: any = {
     access_token: null,
     refresh_token: null,
-    type_token: 'Bearer'
+    token_type: 'Bearer'
 };
 
 export const actions: ReducerActions = {
