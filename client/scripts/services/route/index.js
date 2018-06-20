@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Route, Redirect,  withRouter } from "react-router-dom";
 
-import fakeAuth from "../auth";
+import isAuthenticated from "../auth/utils/isAuthenticated";
 
 export const OpenRoute = ({ component: Component, ...args }: {component: React.Element<any>}): React.Element<any> => (
     <Route
@@ -15,7 +15,7 @@ export const PrivateRoute = ({ component: Component, ...args }: {component: Reac
     <Route
         {...args}
         render={props =>
-            fakeAuth.isAuthenticated ? (
+            isAuthenticated() ? (
                 <Component {...props} />
             ) : (
                 <Redirect
