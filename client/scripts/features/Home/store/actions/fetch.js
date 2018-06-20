@@ -1,44 +1,70 @@
 // @flow
 import _ from 'lodash';
+import axios from 'axios';
+import serialize from '../../../../services/utils/serialize';
 
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE, FETCH_CANCEL } from '../constants';
-import { createAction } from '../../../../services/storage/utilities';
+import {FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE, FETCH_CANCEL} from '../constants';
+import {createAction} from '../../../../services/storage/utilities';
 
-// import { bd, common } from '../../../../services/api/index';
+import {user} from '../../../../services/api/index';
 
-// export const request: ThunkAction = createAction(FETCH_REQUEST);
-// export const success: ThunkAction = createAction(FETCH_SUCCESS);
-// export const failure: ThunkAction = createAction(FETCH_FAILURE);
-// export const cancel: ThunkAction = createAction(FETCH_CANCEL);
-
-
-// const Requests: Array<AjaxRequest> = [];
-
-// export function makeFetch(blockId: number): Function {
-    // return async (dispatch: Dispatch): Promise<any> => {
-    //     dispatch(request({ error: null }));
-    //
-    //     try {
-    //         // const request0 = bd.blocks({ blockId });
-    //
-    //         const request1 = bd.block({ blockId });
-    //         Requests.push(request1);
-    //         const response = await request1.promise;
-    //
-    //         // response.data.words = _.shuffle(response.data.words);
-    //
-    //         dispatch(success({ data: response.data.data }));
-    //     } catch (error) {
-    //         dispatch(failure({ error }));
-    //     }
-    // };
-// }
+const request: ThunkAction = createAction(FETCH_REQUEST);
+const success: ThunkAction = createAction(FETCH_SUCCESS);
+const failure: ThunkAction = createAction(FETCH_FAILURE);
+const cancel: ThunkAction = createAction(FETCH_CANCEL);
 
 
-// export function cancelFetch() {
-//     return () => {
-//         _.each(Requests, req => {
-//             req.cancel('Operation canceled by the user.');
-//         });
-//     };
-// }
+
+const Requests: Array<AjaxRequest> = [];
+
+export function makeFetch(opt: any): Function {
+    // const {email, password} = opt;
+    // const grant_type = 'password';
+    // const username = email;
+    // JSON.stringify({email, password, grant_type})
+
+
+    return async (dispatch: Dispatch): Promise<any> => {
+        dispatch(request({error: null}));
+        //
+        try {
+            // const request = user.token({
+            //     method: 'post',
+            //     headers: {'Content-type': 'application/x-www-form-urlencoded'},
+            //     data: serialize({email, password, grant_type, username})
+            // });
+            //
+            // Requests.push(request);
+            //
+            // const response = await request.promise;
+            //
+            // dispatch(authSet({
+            //     access_token: response.data.data.access_token,
+            //     refresh_token: response.data.data.refresh_token,
+            // }));
+
+
+            const userInfo =  user.info();
+            Requests.push(userInfo);
+            const response = await userInfo.promise;
+
+            // debugger;
+
+            dispatch(success({data: response.data.data}));
+        } catch (error) {
+
+            // debugger;
+
+            dispatch(failure({error}));
+        }
+    };
+}
+
+
+export function cancelFetch() {
+    return () => {
+        _.each(Requests, req => {
+            req.cancel('Operation canceled by the user.');
+        });
+    };
+}

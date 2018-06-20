@@ -9,6 +9,13 @@ import i18n from '../../../../i18n';
 export default class FeatureHome extends React.Component<*> {
     componentWillMount() {
         document.title = 'Home page';
+        this.props.makeFetch();
+    }
+
+    componentWillUnmount() {
+        this.props.cancelFetch();
+        // this.props.resetStore();
+        // debugger;
     }
 
     render() {
