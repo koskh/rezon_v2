@@ -10,6 +10,10 @@ const reset: any = createAction(AUTH_RESET);
 
 export function authSet(opt: Object) {
     return  (dispatch: Dispatch) =>{
+
+        window.localStorage.setItem('access_token', opt['access_token']);
+        window.localStorage.setItem('refresh_token', opt['refresh_token']);
+
         dispatch(set(opt));
     }
 }
