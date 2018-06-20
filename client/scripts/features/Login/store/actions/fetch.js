@@ -42,6 +42,7 @@ export function makeFetch(opt: bodyValuesType): Function {
             dispatch(authSet({
                 access_token: response.data.data.access_token,
                 refresh_token: response.data.data.refresh_token,
+                token_type: response.data.data.token_type,
             }));
 
 
