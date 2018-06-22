@@ -3,7 +3,7 @@ import axios from 'axios';
 import { requestsConfigHandler, responseErrorHandler} from './interceptors';
 import urls from './urls';
 
-const http = axios.create({
+export const http = axios.create({
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Cache-control': 'no-cache',

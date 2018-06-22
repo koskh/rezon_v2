@@ -1,4 +1,9 @@
 import store from '../storage/store';
+import {http} from "./index";
+
+import {authSet} from "../auth/store/actions";
+import {user} from '../../services/api/index';
+import serialize from "../utils/serialize";
 
 // import history from 'history';
 // import errors from '../constants/errors';
@@ -24,7 +29,37 @@ const statuses = {
 
 // export default {
 export const responseErrorHandler = error => {
-    // debugger;
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+
+        originalRequest._retry = true;
+
+        const auth = store.getState()['auth'];
+        const refresh_token = auth['refresh_token'];
+
+        const request = user.token({
+            method: 'post',
+            headers: {'Content-type': 'application/x-www-form-urlencoded'},
+            data: serialize({grant_type: 'refresh_token', 'refresh_token': refresh_token})
+        });
+
+        return request.promise
+            .then( response =>{
+
+                const {access_token, refresh_token, token_type} =  response.data;
+
+                store.dispatch(authSet({
+                    access_token,
+                    refresh_token,
+                    token_type
+                }));
+
+                originalRequest.headers['Authorization'] =`${token_type} ${access_token}`;
+
+                return http(originalRequest);
+            })
+    }
     
     // if (error.response) {
     // if (error.response.status === statuses.notFound)
