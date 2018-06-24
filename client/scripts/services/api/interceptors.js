@@ -1,6 +1,8 @@
 import store from '../storage/store';
 import {http} from "./index";
 
+import history from './history';
+
 import {authSet} from "../auth/store/actions";
 import {user} from '../../services/api/index';
 import serialize from "../utils/serialize";
@@ -58,6 +60,17 @@ export const responseErrorHandler = error => {
                 originalRequest.headers['Authorization'] =`${token_type} ${access_token}`;
 
                 return http(originalRequest);
+            },  error => {
+
+                store.dispatch(authSet({
+                    access_token: null,
+                    refresh_token: null,
+                    token_type: null
+                }));
+
+                history.push('/login');
+
+                // debugger;
             })
     }
     

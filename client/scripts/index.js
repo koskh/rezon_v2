@@ -17,6 +17,8 @@ const locale = i18n.getBrowserLocale();
 const messages =  i18n.getMessages(locale);
 
 import {BrowserRouter as Router, Switch} from "react-router-dom";
+import history from './services/api/history';
+
 import {OpenRoute, PrivateRoute} from './services/route'
 
 import {Provider} from 'react-redux';
@@ -41,7 +43,7 @@ invariant(rootEl, 'Cant find root element');
 ReactDOM.render(
     <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-            <Router>
+            <Router history={history}>
                 <section>
                     <header>
                         <Navigate/>
