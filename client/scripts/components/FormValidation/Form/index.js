@@ -7,6 +7,7 @@ import styles from './index.pcss';
 type propsType = {
     makeFetch?: Function,
     cancelFetch?: Function,
+    isPending?: boolean,
     children?: React.Node
 }
 
@@ -20,11 +21,11 @@ class Form extends React.Component<propsType> {
 
     formComponents: any = {}; // рнфа на компоненты формы
 
-    _renderChildren = (props: any) => {
-        return React.Children.map(props.children, child => {
-            return React.cloneElement(child, {onChange: this._onFormBodyChange});
-        });
-    };
+    // _renderChildren = (props: any) => {
+    //     return React.Children.map(props.children, child => {
+    //         return React.cloneElement(child, {onChange: this._onFormBodyChange});
+    //     });
+    // };
 
     _onFormBodyChange = (opt: {isValid: boolean}) => {
         const {isValid} = opt;
@@ -61,6 +62,7 @@ class Form extends React.Component<propsType> {
                         onOkClick: this._onOkClick,
                         onCancelClick: this._onCancelClick,
                         onChange: this._onFormBodyChange,
+                        isPending: this.props.isPending,
                         onRef: ref => { this.formComponents[childName] = ref},
                     });
                 })}

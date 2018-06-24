@@ -6,7 +6,7 @@ const initialState: ComponentStore = {
     id: null,
     data: null,
     error: null,
-    isPending: true,
+    isPending: false,
     isUpdating: false
 };
 

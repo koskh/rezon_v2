@@ -10,6 +10,7 @@ type propsType = {
     formSchema?: formSchemaType,
     children?: React.Node,
     onChange?: Function,
+    isPending?: boolean,
     onRef?: Function
 }
 

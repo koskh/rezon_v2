@@ -10,6 +10,7 @@ type propsType = {
     onOkClick?: Function,
     onCancelClick?: Function,
     onRef?: Function,
+    isPending?: boolean,
     children?: React.Node,
 }
 
@@ -56,10 +57,12 @@ class FormFooter extends React.Component<propsType, stateType> {
     };
 
     render() {
+        const {isPending} = this.props;
+
         return (
             <div className={styles.FormFooter}>
                 {this.props.children}
-                <button onClick={this._onOkClick} disabled={!this.state.isOkEnabled}> OK</button>
+                <button onClick={this._onOkClick} disabled={!this.state.isOkEnabled || isPending}> OK</button>
                 <button onClick={this._onCancelClick}> Cancel</button>
             </div>
         );
